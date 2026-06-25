@@ -41,8 +41,7 @@
 │   ┌────────────────┐   ┌─────────────────────────────────┐    │
 │   │  NORTHWIND_DB  │   │  TextToSQL_App DB               │    │
 │   │  (business DB) │   │  - users                        │    │
-│   │  queried by AI │   │  - admin_logs                   │    │
-│   │                │   │  - query_logs                   │    │
+│   │  - query_logs  │   │  - admin_logs                   │    │
 │   └────────────────┘   └─────────────────────────────────┘    │
 └────────────────────────────────────────────────────────────────┘
             │
@@ -79,10 +78,11 @@
 | SSMS (optional) | Any | DB management |
 
 ### Required SQL Server Databases
-1. **`NORTHWIND_DB`** — the business database being queried  
-   → See [`database/Northwind_setup.md`](database/Northwind_setup.md)
+1. **`NORTHWIND_DB`** — the business database being queried, and stores the `query_logs` table.
+   → See [`database/Northwind_setup.md`](database/Northwind_setup.md) for data restore.
+   → See [`database/setup_Northwind_query_logs.sql`](database/setup_Northwind_query_logs.sql) to add the logging table.
 
-2. **`TextToSQL_App`** — stores users, auth logs, query logs  
+2. **`TextToSQL_App`** — stores users, auth logs
    → See [`database/setup_TextToSQL_App.sql`](database/setup_TextToSQL_App.sql)
 
 ### Required LM Studio Setup
