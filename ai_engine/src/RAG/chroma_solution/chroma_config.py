@@ -1,0 +1,6 @@
+CHROMA_DB_PATH = "vector_store/chroma_schema_db"
+COLLECTION_NAME = "sql_schema"
+EMBEDDING_MODEL_NAME = "all-MiniLM-L6-v2"
+TOP_K = 5
+RETRIEVAL_EXTRA_CANDIDATES = 8
+MAX_COLUMNS_PER_CHUNK = 35

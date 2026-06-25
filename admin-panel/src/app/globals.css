@@ -1,0 +1,14 @@
+html, body {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  letter-spacing: -0.5px;
+  background: #F4F7FE;
+  color: #1B2559;
+}
+html.dark body {
+  background: #0b1437 !important;
+  color: #ffffff !important;
+}
+
+html.dark {
+  color-scheme: dark;
+}

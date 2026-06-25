@@ -1,0 +1,40 @@
+# Python / virtual environment
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment / secrets
+.env
+.env.*
+*.key
+*.pem
+
+# Logs
+*.log
+
+# Local databases / generated data
+*.db
+*.sqlite
+# Note: *.sqlite3 NOT ignored — vector_store/chroma_schema_db/chroma.sqlite3 is committed intentionally
+
+# Vector databases / embeddings
+# vector_store/ is intentionally committed (contains pre-built Northwind ChromaDB)
+chroma/
+*.pkl
+
+# Benchmark outputs
+benchmark/manual/outputs/
+
+# Spider benchmark data
+benchmark/spider/data/
+
+# Embedded external repo
+benchmark/spider/test-suite-sql-eval/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
