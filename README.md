@@ -90,12 +90,13 @@ You can use the following accounts to test the application (all passwords are `1
 | SSMS (optional) | Any | DB management |
 
 ### Required SQL Server Databases
+The `database` folder contains two SQL scripts that will create and set up the required databases:
+
 1. **`NORTHWIND_DB`** — the business database being queried, and stores the `query_logs` table.
-   → See [`database/Northwind_setup.md`](database/Northwind_setup.md) for data restore.
-   → See [`database/setup_Northwind_query_logs.sql`](database/setup_Northwind_query_logs.sql) to add the logging table.
+   → Run [`database/setup_NORTHWIND_DB.sql`](database/setup_NORTHWIND_DB.sql)
 
 2. **`TextToSQL_App`** — stores users, auth logs
-   → See [`database/setup_TextToSQL_App.sql`](database/setup_TextToSQL_App.sql)
+   → Run [`database/setup_TextToSQL_App.sql`](database/setup_TextToSQL_App.sql)
 
 ### Required LM Studio Setup
 1. Download [LM Studio](https://lmstudio.ai/)
@@ -125,7 +126,8 @@ AskDB/
 # Create TextToSQL_App database
 sqlcmd -S YOUR_SERVER\SQLEXPRESS -E -i database/setup_TextToSQL_App.sql
 
-# Then follow database/Northwind_setup.md to restore Northwind
+# Create NORTHWIND_DB database (with sample data and query_logs)
+sqlcmd -S YOUR_SERVER\SQLEXPRESS -E -i database/setup_NORTHWIND_DB.sql
 ```
 
 ### Step 2 — AI Engine
