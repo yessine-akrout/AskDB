@@ -79,6 +79,18 @@ You can use the following accounts to test the application (all passwords are `1
 
 ---
 
+## Sample Questions to Try
+
+Once everything is running, try asking the AI these questions (which are specifically meant for the Northwind database):
+
+- **"Show all orders"** *(Simple query)*
+- **"List all employees located in London"** *(Filtering)*
+- **"How many products are in each category?"** *(Aggregation)*
+- **"Show total sales by category"** *(Complex JOINs with calculations)*
+- **"Who are the top 5 customers by revenue?"** *(Sorting and Limiting)*
+
+---
+
 ## Prerequisites
 
 | Tool | Version | Purpose |
