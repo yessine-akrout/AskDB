@@ -90,15 +90,10 @@ You can use the following accounts to test the application (all passwords are `1
 | SSMS (optional) | Any | DB management |
 
 ### Required SQL Server Databases
-*(Note: These scripts use T-SQL and must be executed in Microsoft SQL Server, for example using SQL Server Management Studio or sqlcmd).*
-
-The `database` folder contains two SQL scripts that will create and set up the required databases:
+The application requires two SQL Server databases (setup instructions are in Step 1 below):
 
 1. **`NORTHWIND_DB`** — the business database being queried, and stores the `query_logs` table.
-   → Run [`database/setup_NORTHWIND_DB.sql`](database/setup_NORTHWIND_DB.sql)
-
-2. **`TextToSQL_App`** — stores users, auth logs
-   → Run [`database/setup_TextToSQL_App.sql`](database/setup_TextToSQL_App.sql)
+2. **`TextToSQL_App`** — stores users and auth logs.
 
 ### Required LM Studio Setup
 1. Download [LM Studio](https://lmstudio.ai/)
@@ -123,6 +118,8 @@ AskDB/
 ## Setup & Running
 
 ### Step 1 — Set Up Databases
+
+*(Note: These scripts use T-SQL and must be executed in Microsoft SQL Server, for example using SQL Server Management Studio or sqlcmd).*
 
 ```bash
 # Create TextToSQL_App database
