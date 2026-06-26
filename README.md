@@ -103,7 +103,7 @@ The `database` folder contains two SQL scripts that will create and set up the r
 ### Required LM Studio Setup
 1. Download [LM Studio](https://lmstudio.ai/)
 2. Download the model: `qwen2.5-coder-7b-instruct`
-3. Start the **Local Server** in LM Studio on port `1234`
+3. Start the **Local Server** in LM Studio
 
 ---
 
@@ -153,7 +153,7 @@ copy .env.example .env
 uvicorn myapi:app --host 127.0.0.1 --port 5000 --reload
 ```
 
-> ⚠️ **Make sure LM Studio is running on port 1234 before starting the AI engine!**
+> ⚠️ **Make sure LM Studio is running before starting the AI engine!**
 
 ### Step 3 — Backend
 
