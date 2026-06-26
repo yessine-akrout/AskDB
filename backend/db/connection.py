@@ -12,8 +12,12 @@ DB_TIMEOUT = os.getenv("DB_TIMEOUT", "10")
 
 
 def get_connection():
+    driver = DB_DRIVER
+    if not driver.startswith("{"):
+        driver = f"{{{driver}}}"
+        
     conn_str = (
-        f"DRIVER={{{DB_DRIVER}}};"
+        f"DRIVER={driver};"
         f"SERVER={DB_SERVER};"
         f"DATABASE={DB_DATABASE};"
         f"Trusted_Connection={DB_TRUSTED_CONNECTION};"
