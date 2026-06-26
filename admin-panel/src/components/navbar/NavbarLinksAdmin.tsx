@@ -80,6 +80,13 @@ export default function NavbarLinksAdmin() {
       }
 
       try {
+        if (process.env.NEXT_PUBLIC_DEMO_MODE === 'true' && token === 'mock-demo-token') {
+          const mockUser = { id: 'demo-id', email: 'admin@askdb.demo', first_name: 'Demo', last_name: 'Admin', role: 'admin' };
+          setUser(mockUser);
+          localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(mockUser));
+          setImageError(false);
+          return;
+        }
         const res = await fetch(`${API_BASE_URL}/auth/me`, {
           method: "GET",
           headers: {
@@ -129,14 +136,18 @@ export default function NavbarLinksAdmin() {
     const token = localStorage.getItem(TOKEN_STORAGE_KEY);
 
     try {
-      if (token) {
+      if (process.env.NEXT_PUBLIC_DEMO_MODE === 'true') {
+        localStorage.removeItem(TOKEN_STORAGE_KEY);
+        localStorage.removeItem(USER_STORAGE_KEY);
+        window.location.href = "/auth/login";
+        return;
+      }
         await fetch(`${API_BASE_URL}/auth/logout`, {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-      }
     } catch {
       // ignore
     }

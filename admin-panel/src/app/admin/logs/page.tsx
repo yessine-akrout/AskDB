@@ -422,6 +422,19 @@ export default function LogsPage() {
       setLoading(true);
       setError("");
 
+      if (process.env.NEXT_PUBLIC_DEMO_MODE === 'true') {
+        setAdminLogs([
+          { id: '1', user_id: '1', action: 'LOGIN', details: 'Admin logged in', created_at: new Date().toISOString() },
+          { id: '2', user_id: '1', action: 'CREATE_USER', details: 'Created user stagiaire', created_at: new Date(Date.now() - 86400000).toISOString() }
+        ] as any);
+        setQueryLogs([
+          { id: '1', user_id: '1', email: 'admin@askdb.demo', query: 'Show all orders', sql_query: 'SELECT * FROM Orders;', status: 'success', created_at: new Date().toISOString() },
+          { id: '2', user_id: '1', email: 'messi@gmail.com', query: 'Delete all customers', sql_query: '', status: 'access_denied', created_at: new Date(Date.now() - 3600000).toISOString() },
+          { id: '3', user_id: '2', email: 'stagiaire@company.com', query: 'Top 5 products', sql_query: 'SELECT TOP 5 * FROM Products;', status: 'success', created_at: new Date(Date.now() - 7200000).toISOString() }
+        ] as any);
+        return;
+      }
+
       const [adminResponse, queryResponse] = await Promise.all([
         fetch(`${API_BASE_URL}/admin/logs`, {
           method: "GET",

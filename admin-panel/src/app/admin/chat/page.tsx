@@ -1,4 +1,5 @@
 "use client";
+import { Suspense } from 'react';
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
@@ -334,7 +335,7 @@ function MessageCard({ message }: { message: ChatMessage }) {
   );
 }
 
-export default function ChatTestPage() {
+function ChatTestPageContent() {
   const [inputCode, setInputCode] = useState("");
   const [loading, setLoading] = useState(false);
   const [conversations, setConversations] = useState<Conversation[]>([]);
@@ -710,5 +711,12 @@ export default function ChatTestPage() {
         </Box>
       </Flex>
     </Flex>
+  );
+}
+export default function ChatTestPage() {
+  return (
+    <Suspense fallback={<Box p={8}><Text>Chargement...</Text></Box>}>
+      <ChatTestPageContent />
+    </Suspense>
   );
 }

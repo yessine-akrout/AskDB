@@ -289,6 +289,15 @@ export default function UsersPage() {
       setLoading(true);
       setError("");
 
+      if (process.env.NEXT_PUBLIC_DEMO_MODE === 'true') {
+        setUsers([
+          { id: '1', email: 'admin@askdb.demo', first_name: 'Demo', last_name: 'Admin', role: 'admin', created_at: new Date().toISOString() },
+          { id: '2', email: 'messi@gmail.com', first_name: 'Lionel', last_name: 'Messi', role: 'admin', created_at: new Date().toISOString() },
+          { id: '3', email: 'stagiaire@company.com', first_name: 'Stagiaire', last_name: 'Test', role: 'stagiaire', created_at: new Date().toISOString() }
+        ]);
+        return;
+      }
+
       const response = await fetch(`${API_BASE_URL}/admin/users`, {
         method: "GET",
         headers: buildAuthHeaders(),
@@ -326,6 +335,11 @@ export default function UsersPage() {
       setSubmitting(true);
       setError("");
 
+      if (process.env.NEXT_PUBLIC_DEMO_MODE === 'true') {
+        alert("La création d'utilisateur est désactivée en mode démo.");
+        return;
+      }
+
       const response = await fetch(`${API_BASE_URL}/auth/register`, {
         method: "POST",
         headers: buildAuthHeaders(),
@@ -361,6 +375,12 @@ export default function UsersPage() {
     try {
       setDeletingUserId(userId);
       setError("");
+
+      if (process.env.NEXT_PUBLIC_DEMO_MODE === 'true') {
+        alert("La suppression d'utilisateur est désactivée en mode démo.");
+        setDeletingUserId(null);
+        return;
+      }
 
       const response = await fetch(`${API_BASE_URL}/admin/users/${userId}`, {
         method: "DELETE",

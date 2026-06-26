@@ -211,7 +211,63 @@ export default function Chat() {
     try {
       const authUser = getAuthUser();
 
-      const response = await fetch(`${API_URL}/chat`, {
+      let data: SqlResponse;
+
+      if (process.env.NEXT_PUBLIC_DEMO_MODE === 'true') {
+        // DEMO MODE MOCKS
+        await new Promise((resolve) => setTimeout(resolve, 1000)); // fake delay
+        const lowerQ = trimmedInput.toLowerCase();
+        
+        if (lowerQ.includes('delete') || lowerQ.includes('drop') || lowerQ.includes('update')) {
+          data = {
+            question: trimmedInput,
+            status: "blocked",
+            error: "DANGEROUS_KEYWORD_DETECTED",
+            message: "RBAC REJECTION: Operation not allowed in Demo Mode."
+          };
+        } else if (lowerQ.includes('all orders')) {
+          data = {
+            question: trimmedInput,
+            sql: "SELECT * FROM Orders;",
+            result: { columns: ["OrderID", "CustomerID", "EmployeeID", "OrderDate", "ShipCountry"], rows: [[10248, "VINET", 5, "1996-07-04", "France"], [10249, "TOMSP", 6, "1996-07-05", "Germany"]], row_count: 830 },
+            status: "success",
+            message: "Query executed successfully."
+          };
+        } else if (lowerQ.includes('top 5 customers')) {
+          data = {
+            question: trimmedInput,
+            sql: "SELECT TOP 5 c.CompanyName, SUM(od.UnitPrice * od.Quantity) AS Revenue FROM Customers c JOIN Orders o ON c.CustomerID = o.CustomerID JOIN [Order Details] od ON o.OrderID = od.OrderID GROUP BY c.CompanyName ORDER BY Revenue DESC;",
+            result: { columns: ["CompanyName", "Revenue"], rows: [["QUICK-Stop", 110277.30], ["Save-a-lot Markets", 104361.95], ["Ernst Handel", 102237.18], ["Hungry Owl All-Night Grocers", 49979.90], ["Mère Paillarde", 28872.19]], row_count: 5 },
+            status: "success",
+            message: "Query executed successfully."
+          };
+        } else if (lowerQ.includes('how many products')) {
+          data = {
+            question: trimmedInput,
+            sql: "SELECT c.CategoryName, COUNT(p.ProductID) AS ProductCount FROM Categories c JOIN Products p ON c.CategoryID = p.CategoryID GROUP BY c.CategoryName;",
+            result: { columns: ["CategoryName", "ProductCount"], rows: [["Beverages", 12], ["Condiments", 12], ["Confections", 13], ["Dairy Products", 10], ["Grains/Cereals", 7], ["Meat/Poultry", 6], ["Produce", 5], ["Seafood", 12]], row_count: 8 },
+            status: "success",
+            message: "Query executed successfully."
+          };
+        } else if (lowerQ.includes('employees') && lowerQ.includes('london')) {
+          data = {
+            question: trimmedInput,
+            sql: "SELECT FirstName, LastName, Title FROM Employees WHERE City = 'London';",
+            result: { columns: ["FirstName", "LastName", "Title"], rows: [["Steven", "Buchanan", "Sales Manager"], ["Michael", "Suyama", "Sales Representative"], ["Robert", "King", "Sales Representative"], ["Anne", "Dodsworth", "Sales Representative"]], row_count: 4 },
+            status: "success",
+            message: "Query executed successfully."
+          };
+        } else {
+          data = {
+            question: trimmedInput,
+            sql: "-- Mock generic SQL query\nSELECT * FROM Orders WHERE ShipCountry = 'France';",
+            result: { columns: ["OrderID", "CustomerID", "ShipCountry"], rows: [[10248, "VINET", "France"], [10265, "BLONP", "France"], [10277, "BLONP", "France"]], row_count: 3 },
+            status: "success",
+            message: "Query executed successfully. (Fallback Mock)"
+          };
+        }
+      } else {
+        const response = await fetch(`${API_URL}/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -243,7 +299,8 @@ export default function Chat() {
         return;
       }
 
-      const data: SqlResponse = await response.json();
+        data = await response.json();
+      }
 
       const assistantMessage: ChatMessage = {
         id: createId(),
@@ -328,7 +385,9 @@ export default function Chat() {
               >
                 <Box flex="1" textAlign="left">
                   <Text color={gray} fontWeight="500" fontSize="sm">
-                    Connecté au backend FastAPI local
+                    {process.env.NEXT_PUBLIC_DEMO_MODE === 'true' 
+                      ? 'Demo Mode — predefined Northwind examples for online stability' 
+                      : 'Connecté au backend FastAPI local'}
                   </Text>
                 </Box>
                 <AccordionIcon color={gray} />

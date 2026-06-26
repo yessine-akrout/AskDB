@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const TOKEN_STORAGE_KEY = "auth_token";
 const USER_STORAGE_KEY = "auth_user";
 
-export default function AdminTokenBootstrap() {
+function AdminTokenBootstrapContent() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -33,4 +33,12 @@ export default function AdminTokenBootstrap() {
   }, [searchParams, pathname, router]);
 
   return null;
+}
+
+export default function AdminTokenBootstrap() {
+  return (
+    <Suspense fallback={null}>
+      <AdminTokenBootstrapContent />
+    </Suspense>
+  );
 }

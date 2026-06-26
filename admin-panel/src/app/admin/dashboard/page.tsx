@@ -414,6 +414,12 @@ export default function DashboardPage() {
   );
 
   async function fetchUserStats() {
+    if (process.env.NEXT_PUBLIC_DEMO_MODE === 'true') {
+      setTotalUsers(142);
+      setTotalAdmins(5);
+      setNonAdminUsers(137);
+      return;
+    }
     try {
       const res = await fetch(`${API_BASE_URL}/admin/users`, {
         headers: buildAuthHeaders(),
@@ -443,6 +449,14 @@ export default function DashboardPage() {
   }
 
   async function fetchQueryLogs() {
+    if (process.env.NEXT_PUBLIC_DEMO_MODE === 'true') {
+      setQueryLogs([
+        { id: 1, user_id: '1', email: 'admin@askdb.demo', query: 'Show all orders', sql_query: 'SELECT * FROM Orders;', status: 'success', created_at: new Date().toISOString() },
+        { id: 2, user_id: '1', email: 'messi@gmail.com', query: 'Delete all customers', sql_query: '', status: 'access_denied', created_at: new Date(Date.now() - 3600000).toISOString() },
+        { id: 3, user_id: '2', email: 'stagiaire@company.com', query: 'Top 5 products', sql_query: 'SELECT TOP 5 * FROM Products;', status: 'success', created_at: new Date(Date.now() - 7200000).toISOString() }
+      ] as any);
+      return;
+    }
     try {
       const endpoints = [`${API_BASE_URL}/query-logs`, `${API_BASE_URL}/admin/query-logs`];
 

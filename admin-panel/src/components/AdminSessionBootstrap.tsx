@@ -13,6 +13,11 @@ export default function AdminSessionBootstrap() {
     if (!token) return;
 
     const fetchMe = async () => {
+      if (process.env.NEXT_PUBLIC_DEMO_MODE === 'true' && token === 'mock-demo-token') {
+        const mockUser = { id: 'demo-id', email: 'admin@askdb.demo', first_name: 'Demo', last_name: 'Admin', role: 'admin' };
+        localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(mockUser));
+        return;
+      }
       try {
         const res = await fetch(`${API_BASE_URL}/auth/me`, {
           headers: {

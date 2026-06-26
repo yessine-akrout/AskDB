@@ -19,6 +19,7 @@ export function NextAvatar({
     const { colorMode } = useColorMode();
 
     return (
+        // @ts-ignore
         <Image
             {...props}
             {...(showBorder
