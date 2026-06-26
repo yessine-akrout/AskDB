@@ -90,6 +90,8 @@ You can use the following accounts to test the application (all passwords are `1
 | SSMS (optional) | Any | DB management |
 
 ### Required SQL Server Databases
+*(Note: These scripts use T-SQL and must be executed in Microsoft SQL Server, for example using SQL Server Management Studio or sqlcmd).*
+
 The `database` folder contains two SQL scripts that will create and set up the required databases:
 
 1. **`NORTHWIND_DB`** — the business database being queried, and stores the `query_logs` table.
