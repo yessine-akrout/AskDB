@@ -16,11 +16,9 @@ npm install
 
 # Copy environment file
 copy .env.local.example .env.local
-# Or on Linux/Mac:
-# cp .env.local.example .env.local
 
-npm run dev -- --port 3001
-# Opens at http://localhost:3001
+npm run dev
+# Next.js will auto-assign a port (usually 3000 or 3001)
 ```
 
 ## Environment Variables

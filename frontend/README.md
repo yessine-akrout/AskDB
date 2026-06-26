@@ -16,11 +16,9 @@ npm install
 
 # Copy environment file
 copy .env.local.example .env.local
-# Or on Linux/Mac:
-# cp .env.local.example .env.local
 
 npm run dev
-# Opens at http://localhost:3000
+# Next.js will auto-assign a port (usually 3000 or 3001)
 ```
 
 ## Environment Variables
@@ -32,7 +30,7 @@ npm run dev
 ## How It Works
 
 - Communicates with the **Backend** (`localhost:5001`) for authentication
-- Communicates with the **AI Engine** (`localhost:8000`) for chat queries (text-to-SQL)
+- Communicates with the **AI Engine** (`localhost:5000`) for chat queries (text-to-SQL)
 - Displays query results returned from the AI engine
 
 ## Tech Stack

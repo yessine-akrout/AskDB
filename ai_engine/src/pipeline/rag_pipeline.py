@@ -4,8 +4,7 @@ from src.sql.validator import validate_select_query
 from src.LLM import client
 from src.pipeline.normalizer import normalize_question
 import time
-#from src.prompt.rag_prompt_builder import build_prompt, build_spider_prompt
-#from benchmark.spider.spider_validator import validate_spider_select_query
+
 
 
 from src.security.rbac import (

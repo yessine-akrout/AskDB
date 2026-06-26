@@ -1,14 +1,10 @@
 from src.RAG.semantic_formatter import formatter_kb
-
-#from src.RAG.rag_schema_solution import hybrid 
 from src.RAG.chroma_solution.chroma_retreiever_northwind import retrieve_schema_context
 
-#from benchmark.spider.spider_schema_retriever import retrieve_spider_schema_context
 
 
 def build_prompt(user_question):
     
-    #schema = hybrid.build_context(hybrid.retrieve_chunks(user_question, 3))
     schema = retrieve_schema_context(user_question)
     semantic_kb = formatter_kb(user_question,3)
 

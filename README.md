@@ -67,6 +67,18 @@
 
 ---
 
+## Test Accounts
+
+You can use the following accounts to test the application (all passwords are `1234`):
+
+| Name | Role | Email |
+|------|------|-------|
+| Messi | `admin` | `messi@gmail.com` |
+| Yessine | `directeur` | `yessine.akrout123@gmail.com` |
+| Fedi | `stagiaire` | `fedi.turki@gmail.com` |
+
+---
+
 ## Prerequisites
 
 | Tool | Version | Purpose |
@@ -96,7 +108,7 @@
 
 ```
 AskDB/
-├── ai_engine/          # RAG + LLM pipeline (FastAPI :8000)
+├── ai_engine/          # RAG + LLM pipeline (FastAPI :5000)
 ├── backend/            # Auth & admin API (FastAPI :5001)
 ├── frontend/           # User chat UI (Next.js :3000)
 ├── admin-panel/        # Admin dashboard UI (Next.js :3001)
@@ -123,8 +135,7 @@ cd ai_engine
 
 # Create virtual environment
 python -m venv venv
-venv\Scripts\activate          # Windows
-# source venv/bin/activate     # Linux/Mac
+venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
@@ -135,7 +146,7 @@ copy .env.example .env
 # Edit .env with your SQL Server name
 
 # Start the server
-uvicorn myapi:app --host 127.0.0.1 --port 8000 --reload
+uvicorn myapi:app --host 127.0.0.1 --port 5000 --reload
 ```
 
 > ⚠️ **Make sure LM Studio is running on port 1234 before starting the AI engine!**
@@ -173,7 +184,7 @@ copy .env.local.example .env.local
 
 # Start dev server
 npm run dev
-# Opens at http://localhost:3000
+# Next.js will auto-assign a port (usually 3000 or 3001)
 ```
 
 ### Step 5 — Admin Panel
@@ -188,8 +199,8 @@ npm install
 copy .env.local.example .env.local
 
 # Start dev server
-npm run dev -- --port 3001
-# Opens at http://localhost:3001
+npm run dev
+# Next.js will auto-assign a port (usually 3000 or 3001)
 ```
 
 ---
@@ -198,17 +209,17 @@ npm run dev -- --port 3001
 
 | Service | Port | URL |
 |---------|------|-----|
-| AI Engine (FastAPI) | 8000 | http://localhost:8000 |
+| AI Engine (FastAPI) | 5000 | http://localhost:5000 |
 | Backend (FastAPI) | 5001 | http://localhost:5001 |
-| Frontend (Next.js) | 3000 | http://localhost:3000 |
-| Admin Panel (Next.js) | 3001 | http://localhost:3001 |
+| Frontend (Next.js) | Auto | http://localhost:3000 (default) |
+| Admin Panel (Next.js) | Auto | http://localhost:3001 (default) |
 | LM Studio | 1234 | http://localhost:1234 |
 
 ---
 
 ## Key API Endpoints
 
-### AI Engine (`localhost:8000`)
+### AI Engine (`localhost:5000`)
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | `POST` | `/chat` | Submit a natural language question → get SQL + results |
