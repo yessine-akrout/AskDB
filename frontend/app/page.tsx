@@ -2,6 +2,7 @@
 /* eslint-disable */
 
 import MessageBoxChat from '@/components/MessageBox';
+import ResultTable from '@/components/ResultTable';
 import { useChatContext } from '@/contexts/ChatContext';
 import {
   Accordion,
@@ -453,79 +454,10 @@ export default function Chat() {
                           Résultat
                         </Text>
 
-                        <Text color={textColor} fontSize="sm" mb="12px">
-                          {(message.responseData.result?.row_count ??
-                            message.responseData.row_count ??
-                            0)}{' '}
-                          ligne(s)
-                        </Text>
-
-                        {(message.responseData.result?.columns ?? []).length > 0 &&
-                          (message.responseData.result?.rows ?? []).length > 0 ? (
-                          <Box
-                            overflowX="auto"
-                            border="1px solid"
-                            borderColor={borderColor}
-                            borderRadius="12px"
-                          >
-                            <table
-                              style={{
-                                width: '100%',
-                                borderCollapse: 'collapse',
-                                minWidth: '700px',
-                              }}
-                            >
-                              <thead>
-                                <tr style={{ background: tableHeaderBg }}>
-                                  {(message.responseData.result?.columns ?? []).map(
-                                    (col, index) => (
-                                      <th
-                                        key={index}
-                                        style={{
-                                          textAlign: 'left',
-                                          padding: '12px',
-                                          borderBottom: '1px solid #e2e8f0',
-                                          fontSize: '14px',
-                                          fontWeight: 600,
-                                          whiteSpace: 'nowrap',
-                                        }}
-                                      >
-                                        {col}
-                                      </th>
-                                    ),
-                                  )}
-                                </tr>
-                              </thead>
-
-                              <tbody>
-                                {(message.responseData.result?.rows ?? []).map(
-                                  (row, rowIndex) => (
-                                    <tr key={rowIndex}>
-                                      {row.map((cell, cellIndex) => (
-                                        <td
-                                          key={cellIndex}
-                                          style={{
-                                            padding: '12px',
-                                            borderBottom: '1px solid #e2e8f0',
-                                            fontSize: '14px',
-                                            whiteSpace: 'nowrap',
-                                            color: tableTextColor,
-                                          }}
-                                        >
-                                          {cell !== null && cell !== undefined
-                                            ? String(cell)
-                                            : 'NULL'}
-                                        </td>
-                                      ))}
-                                    </tr>
-                                  ),
-                                )}
-                              </tbody>
-                            </table>
-                          </Box>
-                        ) : (
-                          <Text color={gray}>Aucune ligne retournée.</Text>
-                        )}
+                        <ResultTable 
+                          columns={message.responseData.result?.columns ?? []} 
+                          rows={message.responseData.result?.rows ?? []} 
+                        />
                       </Box>
 
                       {message.responseData.status && (
