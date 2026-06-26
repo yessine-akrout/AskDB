@@ -21,4 +21,8 @@ if missing:
 
 
 
-connection_string=(f"DRIVER={DB_DRIVER};SERVER={DB_SERVER};DATABASE={DB_DATABASE};Trusted_Connection={DB_TRUSTED_CONNECTION};Connection Timeout={DB_TIMEOUT}")
+driver = DB_DRIVER
+if not driver.startswith("{"):
+    driver = f"{{{driver}}}"
+
+connection_string=(f"DRIVER={driver};SERVER={DB_SERVER};DATABASE={DB_DATABASE};Trusted_Connection={DB_TRUSTED_CONNECTION};Connection Timeout={DB_TIMEOUT}")
