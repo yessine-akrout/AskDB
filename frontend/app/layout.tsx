@@ -33,7 +33,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <Sidebar routes={routes} />
 
               <Box
-                pt={{ base: '60px', md: '100px' }}
+                pt={{ base: '130px', md: '100px' }}
                 float="right"
                 minHeight="100vh"
                 height="100%"

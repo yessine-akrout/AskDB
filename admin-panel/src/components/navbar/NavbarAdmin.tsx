@@ -62,7 +62,7 @@ export default function AdminNavbar(props: {
         direction={{ base: "column", md: "row" }}
         alignItems={{ base: "flex-start", md: "center" }}
         justifyContent={{ base: "center", md: "space-between" }}
-        gap={{ base: "12px", md: "0px" }}
+        gap={{ base: "16px", md: "0px" }}
         mb="0px"
       >
         <Box mb={{ base: "0px", md: "0px" }}>
