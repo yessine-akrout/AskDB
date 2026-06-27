@@ -174,7 +174,7 @@ export default function SignInPage() {
               mb="18px"
             >
               <Text fontSize="xs" fontWeight="700" letterSpacing="0.6px">
-                ESPACE PROFESSIONNEL
+                PROFESSIONAL WORKSPACE
               </Text>
             </Box>
 
@@ -185,7 +185,7 @@ export default function SignInPage() {
               maxW="420px"
               mb="18px"
             >
-              Connectez-vous à votre espace Text-to-SQL
+              Log in to your Text-to-SQL workspace
             </Heading>
 
             <Text
@@ -194,8 +194,8 @@ export default function SignInPage() {
               color="whiteAlpha.900"
               maxW="420px"
             >
-              Retrouvez vos conversations, votre historique et votre environnement
-              de travail IA dans une interface élégante, claire et structurée.
+              Find your conversations, history, and AI work environment
+              in an elegant, clear, and structured interface.
             </Text>
           </Box>
 
@@ -211,11 +211,11 @@ export default function SignInPage() {
             maxW="420px"
           >
             <Text fontSize="sm" fontWeight="700" mb="8px">
-              Accès sécurisé
+              Secure access
             </Text>
             <Text fontSize="sm" lineHeight="1.7" color="whiteAlpha.880">
-              Les identifiants de connexion sont fournis par l’administrateur de
-              votre entreprise.
+              Login credentials are provided by your company
+              administrator.
             </Text>
           </Box>
         </Flex>
@@ -247,21 +247,21 @@ export default function SignInPage() {
               mb="10px"
               fontWeight="800"
             >
-              Se connecter
+              Sign in
             </Heading>
 
             <Text color={subtleText} fontSize="md" mb="28px" lineHeight="1.7">
-              Entrez vos identifiants pour accéder à votre environnement ask.
+              Enter your credentials to access your ASK environment.
             </Text>
 
             <Box as="form" onSubmit={handleSubmit}>
               <FormControl mb="18px" isRequired>
                 <FormLabel color={textColor} fontSize="sm" fontWeight="700" mb="8px">
-                  Adresse e-mail
+                  Email address
                 </FormLabel>
                 <Input
                   type="email"
-                  placeholder="nom@entreprise.com"
+                  placeholder="name@company.com"
                   h="56px"
                   borderRadius="18px"
                   bg={inputBg}
@@ -280,13 +280,13 @@ export default function SignInPage() {
 
               <FormControl mb="20px" isRequired>
                 <FormLabel color={textColor} fontSize="sm" fontWeight="700" mb="8px">
-                  Mot de passe
+                  Password
                 </FormLabel>
 
                 <InputGroup>
                   <Input
                     type={showPassword ? 'text' : 'password'}
-                    placeholder="Entrez votre mot de passe"
+                    placeholder="Enter your password"
                     h="56px"
                     borderRadius="18px"
                     bg={inputBg}
@@ -322,7 +322,7 @@ export default function SignInPage() {
               <Flex align="center" mb="20px">
                 <Checkbox colorScheme="purple" defaultChecked>
                   <Text color={secondaryText} fontSize="sm">
-                    Se souvenir de moi
+                    Remember me
                   </Text>
                 </Checkbox>
               </Flex>
@@ -351,7 +351,7 @@ export default function SignInPage() {
                   bg: purpleGradient,
                 }}
               >
-                Se connecter
+                Sign in
               </Button>
             </Box>
           </Box>
