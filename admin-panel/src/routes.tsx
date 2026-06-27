@@ -4,13 +4,13 @@ import { IRoute } from "@/types/navigation";
 
 const routes: IRoute[] = [
   {
-    name: "Tableau de bord",
+    name: "Dashboard",
     layout: "/admin",
     path: "/dashboard",
     icon: <Icon as={MdHome} width="20px" height="20px" color="inherit" />,
   },
   {
-    name: "Utilisateurs",
+    name: "Users",
     layout: "/admin",
     path: "/users",
     icon: <Icon as={MdPeople} width="20px" height="20px" color="inherit" />,

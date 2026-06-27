@@ -180,7 +180,7 @@ export default function HeaderLinks(props: { secondary: boolean }) {
               color={textColor}
               noOfLines={1}
             >
-              👋 Bonjour, {firstName}
+              👋 Hello, {firstName}
             </Text>
           </Flex>
 

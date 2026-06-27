@@ -182,11 +182,11 @@ function getStatusBreakdown(logs: QueryLog[]) {
   });
 
   return [
-    { label: "Succès", value: statuses.success },
-    { label: "Bloquées", value: statuses.access_denied },
-    { label: "Invalides", value: statuses.invalid },
+    { label: "Success", value: statuses.success },
+    { label: "Blocked", value: statuses.access_denied },
+    { label: "Invalid", value: statuses.invalid },
     {
-      label: "Erreurs",
+      label: "Errors",
       value:
         statuses.error +
         statuses.validation_failed +
@@ -216,7 +216,7 @@ function QueriesThisWeekCard({ logs }: { logs: QueryLog[] }) {
           </Text>
 
           <Text color="#A3AED0" fontSize="sm" fontWeight="500" mt="8px">
-            Total des questions posées sur les 7 derniers jours
+            Total questions asked over the last 7 days
           </Text>
         </Box>
 
@@ -239,7 +239,7 @@ function QueriesThisWeekCard({ logs }: { logs: QueryLog[] }) {
       </Text>
 
       <Text color="#A3AED0" fontSize="sm" fontWeight="500" mt="8px" mb="28px">
-        Total des requêtes cette semaine
+        Total queries this week
       </Text>
 
       <Flex align="end" justify="space-between" h="160px" mt="10px">
@@ -297,7 +297,7 @@ function StatusBreakdownCard({ logs }: { logs: QueryLog[] }) {
           </Text>
 
           <Text color="#A3AED0" fontSize="sm" fontWeight="500" mt="8px">
-            Résultats de génération SQL et de sécurité
+            SQL generation and security results
           </Text>
         </Box>
 
@@ -320,7 +320,7 @@ function StatusBreakdownCard({ logs }: { logs: QueryLog[] }) {
       </Text>
 
       <Text color="#A3AED0" fontSize="sm" fontWeight="500" mt="8px" mb="28px">
-        Total des requêtes enregistrées
+        Total recorded queries
       </Text>
 
       <Flex direction="column" gap="18px">
@@ -496,35 +496,35 @@ export default function DashboardPage() {
         gap="20px"
         mb="20px"
       >
-        <StatCard icon={<MdPeople />} label="Utilisateurs" value={totalUsers} />
+        <StatCard icon={<MdPeople />} label="Users" value={totalUsers} />
 
         <StatCard
           icon={<MdAdminPanelSettings />}
-          label="Administrateurs"
+          label="Administrators"
           value={totalAdmins}
         />
 
         <StatCard
           icon={<MdGroup />}
-          label="Utilisateurs non-admin"
+          label="Non-admin users"
           value={nonAdminUsers}
         />
 
         <StatCard
           icon={<MdCheckCircle />}
-          label="Requêtes réussies"
+          label="Successful queries"
           value={successfulQueries}
         />
 
         <StatCard
           icon={<MdBlock />}
-          label="Requêtes bloquées"
+          label="Blocked queries"
           value={blockedQueries}
         />
 
         <StatCard
           icon={<MdError />}
-          label="Requêtes échouées"
+          label="Failed queries"
           value={failedQueries}
         />
       </Grid>

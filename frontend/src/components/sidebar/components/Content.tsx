@@ -150,7 +150,7 @@ function SidebarContent(props: SidebarContentProps) {
           }}
           onClick={handleNewChat}
         >
-          +   Nouveau chat
+          +   New chat
         </Button>
 
         {/* Search */}
@@ -159,7 +159,7 @@ function SidebarContent(props: SidebarContentProps) {
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setSearchQuery(e.target.value)
           }
-          placeholder="Rechercher une conversation..."
+          placeholder="Search conversations..."
           borderRadius="45px"
           h="44px"
           w="100%"
@@ -233,13 +233,13 @@ function SidebarContent(props: SidebarContentProps) {
                     color={textColor}
                     noOfLines={1}
                   >
-                    {conv.title || 'Nouvelle conversation'}
+                    {conv.title || 'New conversation'}
                   </Text>
                 </Box>
               ))
             ) : (
               <Text fontSize="sm" color={gray} px="4px">
-                aucune conversation trouvée
+                no conversations found
               </Text>
             )}
           </Stack>

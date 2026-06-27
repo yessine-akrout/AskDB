@@ -235,7 +235,7 @@ export default function NavbarLinksAdmin() {
               À propos du panneau d’administration
             </Text>
             <Text color={mutedColor} fontSize="13px" lineHeight="1.5">
-              gérez les utilisateurs et surveillez l’espace d’administration ASKDB.
+              manage users and monitor the ASKDB administration space.
             </Text>
           </Box>
         )}
@@ -325,7 +325,7 @@ export default function NavbarLinksAdmin() {
             </Box>
 
             <Text fontWeight="600" color={textColor} fontSize="14px">
-              👋 Bonjour, {helloName}
+              👋 Hello, {helloName}
             </Text>
           </Flex>
 

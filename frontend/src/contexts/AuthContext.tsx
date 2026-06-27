@@ -63,7 +63,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = async (email: string, password: string) => {
     if (!email.trim() || !password.trim()) {
-      throw new Error('Veuillez remplir tous les champs.');
+      throw new Error('Please fill in all fields.');
     }
 
     const res = await fetch(`${BACKEND_URL}/auth/login`, {
@@ -80,7 +80,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const data = await res.json();
 
     if (!res.ok) {
-      throw new Error(data.detail || data.error || 'Connexion impossible.');
+      throw new Error(data.detail || data.error || 'Login failed.');
     }
 
     localStorage.setItem(TOKEN_STORAGE_KEY, data.access_token);

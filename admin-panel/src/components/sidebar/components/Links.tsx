@@ -178,7 +178,7 @@ export function SidebarLinks(props: { routes: IRoute[] }) {
             <Box ps="35px" pe="10px" pb="10px">
               {visibleHistory.length === 0 ? (
                 <Text color="#A3AED0" fontSize="13px" py="6px">
-                  Aucun historique
+                  No history
                 </Text>
               ) : (
                 <Box
@@ -216,7 +216,7 @@ export function SidebarLinks(props: { routes: IRoute[] }) {
                             overflow="hidden"
                             textOverflow="ellipsis"
                           >
-                            {conv.title || "Nouvelle conversation"}
+                            {conv.title || "New conversation"}
                           </Text>
                         </Box>
                       );

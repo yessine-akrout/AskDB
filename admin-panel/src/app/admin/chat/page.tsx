@@ -43,7 +43,7 @@ type Conversation = {
 const createId = () =>
   `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
 
-function createNewConversation(title = "Nouvelle conversation"): Conversation {
+function createNewConversation(title = "New conversation"): Conversation {
   const now = new Date().toLocaleString();
 
   return {
@@ -417,7 +417,7 @@ export default function ChatTestPage() {
     if (activeConversationId) return activeConversationId;
 
     const newConversation = createNewConversation(
-      firstQuestion?.slice(0, 40) || "Nouvelle conversation",
+      firstQuestion?.slice(0, 40) || "New conversation",
     );
 
     setConversations((prev) => {
@@ -484,7 +484,7 @@ export default function ChatTestPage() {
     updateConversationMessages(
       currentConversationId,
       (messages) => [...messages, userMessage],
-      currentConversation?.title === "Nouvelle conversation" || !currentConversation
+      currentConversation?.title === "New conversation" || !currentConversation
         ? trimmedInput.slice(0, 40)
         : undefined,
     );
@@ -605,7 +605,7 @@ export default function ChatTestPage() {
             lineHeight="100%"
             wordBreak="break-word"
           >
-            {activeConversation?.title || "Nouvelle conversation"}
+            {activeConversation?.title || "New conversation"}
           </Text>
 
           <Button
@@ -619,7 +619,7 @@ export default function ChatTestPage() {
             _hover={{ bg: "#3311DB" }}
           >
             <MdEdit style={{ marginRight: 8 }} />
-            Nouveau Chat
+            New Chat
           </Button>
         </Flex>
 
@@ -648,7 +648,7 @@ export default function ChatTestPage() {
               </Text>
 
               <Text color="#707EAE" fontSize="16px" maxW="520px">
-                Tester les prompts, le SQL généré et les réponses du backend avec la même expérience de chat que l’interface principale.
+                Tester les prompts, le Generated SQL et les réponses du backend avec la même expérience de chat que l’interface principale.
               </Text>
             </Flex>
           ) : (
