@@ -286,7 +286,7 @@ function SidebarContent(props: SidebarContentProps) {
             </Text>
 
             <Text color={gray} fontSize="xs" fontWeight="500" noOfLines={1}>
-              {user?.role || 'user'}
+              {({ stagiaire: 'Intern', directeur: 'Director', admin: 'Admin' } as Record<string, string>)[user?.role || ''] || user?.role || 'user'}
             </Text>
           </Box>
 

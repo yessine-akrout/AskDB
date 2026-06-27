@@ -618,7 +618,7 @@ export default function LogsPage() {
               onClick={fetchAllLogs}
             >
               <MdRefresh style={{ marginRight: 8 }} />
-              Actualiser
+              Refresh
             </Button>
           </Flex>
 
@@ -712,7 +712,7 @@ export default function LogsPage() {
               onClick={fetchAllLogs}
             >
               <MdRefresh style={{ marginRight: 8 }} />
-              Actualiser
+              Refresh
             </Button>
           </Flex>
 

@@ -538,7 +538,7 @@ export default function UsersPage() {
               onClick={fetchUsers}
             >
               <MdRefresh style={{ marginRight: 8 }} />
-              Actualiser
+              Refresh
             </Button>
           </Flex>
 
