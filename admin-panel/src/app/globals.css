@@ -3,6 +3,7 @@ html, body {
   letter-spacing: -0.5px;
   background: #F4F7FE;
   color: #1B2559;
+  overflow-x: hidden;
 }
 html.dark body {
   background: #0b1437 !important;
