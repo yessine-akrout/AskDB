@@ -9,7 +9,7 @@ export default function AdminLogoutButton() {
   const handleLogout = () => {
     localStorage.removeItem(TOKEN_STORAGE_KEY);
     localStorage.removeItem(USER_STORAGE_KEY);
-    window.location.href = "http://localhost:3000";
+    window.location.href = "/";
   };
 
   return (

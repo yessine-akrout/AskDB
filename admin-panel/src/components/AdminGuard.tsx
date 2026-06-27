@@ -17,8 +17,13 @@ export default function AdminGuard({
   useEffect(() => {
     const token = localStorage.getItem(TOKEN_STORAGE_KEY);
 
+    if (process.env.NEXT_PUBLIC_DEMO_MODE === 'true') {
+      setReady(true);
+      return;
+    }
+
     if (!token) {
-      window.location.href = "http://localhost:3000";
+      window.location.href = "/";
       return;
     }
 
