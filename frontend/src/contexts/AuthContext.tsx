@@ -26,8 +26,8 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 const TOKEN_STORAGE_KEY = 'auth_token';
 const USER_STORAGE_KEY = 'auth_user';
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://127.0.0.1:5001';
-const ADMIN_PANEL_URL = 'http://localhost:3001/admin/dashboard';
-const MAIN_APP_URL = 'http://localhost:3000/';
+const ADMIN_PANEL_URL = process.env.NEXT_PUBLIC_ADMIN_PANEL_URL || 'http://localhost:3001/admin/dashboard';
+const MAIN_APP_URL = process.env.NEXT_PUBLIC_FRONTEND_URL || 'http://localhost:3000/';
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<AuthUser | null>(null);
