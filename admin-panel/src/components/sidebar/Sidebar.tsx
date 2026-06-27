@@ -45,7 +45,7 @@ function Sidebar(props: SidebarProps) {
 }
 
 export function SidebarResponsive(props: SidebarResponsiveProps) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { open, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef<HTMLDivElement | null>(null);
   const { routes } = props;
 
@@ -63,7 +63,7 @@ export function SidebarResponsive(props: SidebarResponsiveProps) {
         />
       </Flex>
 
-      <Drawer.Root open={isOpen} onOpenChange={(e) => !e.open && onClose()}>
+      <Drawer.Root open={open} onOpenChange={(e) => !e.open && onClose()} placement="start">
         <Drawer.Backdrop />
         <Drawer.Positioner>
           <Drawer.Content
