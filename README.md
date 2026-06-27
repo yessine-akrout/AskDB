@@ -125,7 +125,7 @@ The application requires two SQL Server databases (setup instructions are in Ste
 
 ```
 AskDB/
-├── ai_engine/          # RAG + LLM pipeline (FastAPI :5000)
+├── ai_engine/          # RAG + LLM pipeline (FastAPI :8000)
 ├── backend/            # Auth & admin API (FastAPI :5001)
 ├── frontend/           # User chat UI (Next.js :3000)
 ├── admin-panel/        # Admin dashboard UI (Next.js :3001)
@@ -166,7 +166,7 @@ copy .env.example .env
 # Edit .env with your SQL Server name
 
 # Start the server
-uvicorn myapi:app --host 127.0.0.1 --port 5000 --reload
+uvicorn myapi:app --host 127.0.0.1 --port 8000 --reload
 ```
 
 > ⚠️ **Make sure LM Studio is running before starting the AI engine!**
