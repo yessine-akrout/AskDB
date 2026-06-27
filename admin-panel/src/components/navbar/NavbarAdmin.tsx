@@ -59,11 +59,13 @@ export default function AdminNavbar(props: {
     >
       <Flex
         w="100%"
-        flexDirection={{ base: "column", md: "row" }}
-        alignItems={{ xl: "center" }}
+        direction={{ base: "column", md: "row" }}
+        alignItems={{ base: "flex-start", md: "center" }}
+        justifyContent={{ base: "center", md: "space-between" }}
+        gap={{ base: "12px", md: "0px" }}
         mb="0px"
       >
-        <Box mb={{ base: "8px", md: "0px" }}>
+        <Box mb={{ base: "0px", md: "0px" }}>
           <Text color="#707EAE" fontSize="sm" mb="3px" fontWeight="500">
             Pages / {brandText}
           </Text>
@@ -74,7 +76,7 @@ export default function AdminNavbar(props: {
             bg="inherit"
             borderRadius="inherit"
             fontWeight="700"
-            fontSize="34px"
+            fontSize={{ base: "24px", md: "34px" }}
             lineHeight="100%"
             p="0px"
             _hover={{ color: "#1B2559" }}
@@ -89,7 +91,7 @@ export default function AdminNavbar(props: {
           </Link>
         </Box>
 
-        <Box ms="auto" w={{ sm: "100%", md: "unset" }}>
+        <Box w={{ base: "100%", md: "unset" }}>
           <AdminNavbarLinks />
         </Box>
       </Flex>

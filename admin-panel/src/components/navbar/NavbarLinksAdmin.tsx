@@ -4,6 +4,8 @@ import { Box, Flex, Icon, Image, Text } from "@chakra-ui/react";
 import { MdInfoOutline, MdDarkMode, MdLightMode } from "react-icons/md";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { API_BASE_URL } from "@/lib/api";
+import { SidebarResponsive } from "@/components/sidebar/Sidebar";
+import routes from "@/routes";
 
 type AuthUser = {
   id: string;
@@ -207,6 +209,8 @@ export default function NavbarLinksAdmin() {
     <Flex
       ref={wrapperRef}
       align="center"
+      justify={{ base: "space-between", md: "flex-end" }}
+      w={{ base: "100%", md: "auto" }}
       bg={surfaceBg}
       borderRadius="30px"
       px="12px"
@@ -216,7 +220,9 @@ export default function NavbarLinksAdmin() {
       position="relative"
       minH="50px"
     >
-      <Box position="relative">
+      <SidebarResponsive routes={routes} />
+      <Flex align="center" gap="12px">
+        <Box position="relative">
         <Icon
           as={MdInfoOutline}
           color={mutedColor}
@@ -353,8 +359,9 @@ export default function NavbarLinksAdmin() {
           >
             Se déconnecter
           </Box>
-        </Box>
-      )}
+          </Box>
+        )}
+      </Flex>
     </Flex>
   );
 }
