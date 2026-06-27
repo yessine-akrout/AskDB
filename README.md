@@ -2,7 +2,14 @@
 
 **AskDB** is a full-stack Text-to-SQL application that allows users to query a **Microsoft SQL Server database using plain English**. It uses a RAG (Retrieval-Augmented Generation) pipeline powered by ChromaDB and a local LLM (via LM Studio) to convert natural language questions into executable SQL queries — with built-in RBAC access control, query logging, and an admin dashboard.
 
+> **Live Demo:** [http://bit.ly/4ezbt6b](http://bit.ly/4ezbt6b)  
 > **Database used in this demo:** Microsoft Northwind (sample trading company database)
+
+---
+
+## Video Demo
+
+*(Video demo coming soon - will be added here)*
 
 ---
 
