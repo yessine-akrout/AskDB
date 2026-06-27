@@ -84,7 +84,7 @@ export default function ResultTable({ columns, rows }: ResultTableProps) {
   if (!columns.length || !rows.length) {
     return (
       <Box p="16px" border="1px dashed" borderColor={borderColor} borderRadius="12px" textAlign="center">
-        <Text color="gray.500" fontSize="sm">Aucune ligne retournée.</Text>
+        <Text color="gray.500" fontSize="sm">No rows returned.</Text>
       </Box>
     );
   }
@@ -94,13 +94,13 @@ export default function ResultTable({ columns, rows }: ResultTableProps) {
       {/* Header */}
       <Flex justify="space-between" align="center" p="16px" borderBottom="1px solid" borderColor={borderColor}>
         <Text color={textColor} fontSize="sm" fontWeight="600">
-          Résultats ({filteredRows.length} lignes)
+          Results ({filteredRows.length} rows)
         </Text>
         <Flex align="center" bg={useColorModeValue('white', 'gray.800')} borderRadius="8px" border="1px solid" borderColor={borderColor} px="12px" py="6px">
           <Icon as={MdSearch} color="gray.400" me="8px" />
           <Input
             variant="unstyled"
-            placeholder="Rechercher..."
+            placeholder="Search..."
             fontSize="sm"
             size="sm"
             w={{ base: '100px', md: '180px' }}
@@ -160,7 +160,7 @@ export default function ResultTable({ columns, rows }: ResultTableProps) {
             ) : (
               <Tr>
                 <Td colSpan={columns.length} textAlign="center" py="20px" color="gray.500" borderColor="transparent">
-                  Aucun résultat trouvé pour "{searchTerm}"
+                  No results found for "{searchTerm}"
                 </Td>
               </Tr>
             )}

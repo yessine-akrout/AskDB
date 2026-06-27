@@ -134,7 +134,7 @@ function SectionShell({
               {title}
             </Text>
             <Text color="#A3AED0" fontSize="13px" mt="2px">
-              {count} élément{count === 1 ? "" : "s"}
+              {count} item{count === 1 ? "" : "s"}
             </Text>
           </Box>
         </Flex>
@@ -175,10 +175,10 @@ function AdminLogRow({ log }: { log: AdminLogItem }) {
     >
       <Flex direction="column" minW="240px" flex="1">
         <Text color="#1B2559" fontSize="15px" fontWeight="600">
-          {log.user_email || "Utilisateur inconnu"}
+          {log.user_email || "Unknown user"}
         </Text>
         <Text color="#707EAE" fontSize="13px" mt="4px">
-          {log.details || "Aucun détail"}
+          {log.details || "No details"}
         </Text>
       </Flex>
 
@@ -224,7 +224,7 @@ function ResultTable({ result }: { result: QueryResultJson }) {
   if (!columns.length || !rows.length) {
     return (
       <Text color="#707EAE" fontSize="13px">
-        Aucun tableau d’exécution disponible.
+        No execution table available.
       </Text>
     );
   }
@@ -286,7 +286,7 @@ function QueryLogRow({ log }: { log: QueryLogItem }) {
       <Flex justify="space-between" align="start" gap="16px" wrap="wrap">
         <Box flex="1" minW="260px">
           <Text color="#1B2559" fontSize="15px" fontWeight="600">
-            {log.user_email || "Utilisateur inconnu"}
+            {log.user_email || "Unknown user"}
           </Text>
           <Text color="#1B2559" fontSize="14px" mt="8px" fontWeight="500">
             {log.question}
@@ -316,7 +316,7 @@ function QueryLogRow({ log }: { log: QueryLogItem }) {
             fontSize="13px"
             fontWeight="600"
           >
-            lignes : {log.row_count ?? 0}
+            rows: {log.row_count ?? 0}
           </Box>
 
           <Text color="#A3AED0" fontSize="13px" minW="145px" textAlign="right">
@@ -340,7 +340,7 @@ function QueryLogRow({ log }: { log: QueryLogItem }) {
         <Box mt="14px">
           <Box mt="10px">
             <Text color="#707EAE" fontSize="12px" fontWeight="600" mb="6px">
-              SQL généré
+              Generated SQL
             </Text>
             <Box
               bg="white"
@@ -355,7 +355,7 @@ function QueryLogRow({ log }: { log: QueryLogItem }) {
                 whiteSpace="pre-wrap"
                 fontFamily="monospace"
               >
-                {log.generated_sql || "Aucun SQL généré"}
+                {log.generated_sql || "No generated SQL"}
               </Text>
             </Box>
           </Box>
@@ -363,7 +363,7 @@ function QueryLogRow({ log }: { log: QueryLogItem }) {
           {log.error_message ? (
             <Box mt="10px">
               <Text color="#EE5D50" fontSize="12px" fontWeight="600" mb="6px">
-                Erreur
+                Error
               </Text>
               <Box
                 bg="#FFF5F5"
@@ -380,13 +380,13 @@ function QueryLogRow({ log }: { log: QueryLogItem }) {
 
           <Box mt="10px">
             <Text color="#707EAE" fontSize="12px" fontWeight="600" mb="6px">
-              Résultat exécuté
+              Executed Result
             </Text>
             {parsedResult ? (
               <ResultTable result={parsedResult} />
             ) : (
               <Text color="#707EAE" fontSize="13px">
-                Aucun tableau d’exécution disponible.
+                No execution table available.
               </Text>
             )}
           </Box>
@@ -450,17 +450,17 @@ export default function LogsPage() {
       const queryData = await queryResponse.json();
 
       if (!adminResponse.ok) {
-        throw new Error(adminData.detail || "Échec de la récupération des journaux d’activité.");
+        throw new Error(adminData.detail || "Failed to retrieve activity logs.");
       }
 
       if (!queryResponse.ok) {
-        throw new Error(queryData.detail || "Échec de la récupération des journaux de requêtes.");
+        throw new Error(queryData.detail || "Failed to retrieve query logs.");
       }
 
       setAdminLogs(adminData.logs || []);
       setQueryLogs(queryData.logs || []);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Échec de la récupération des journaux.");
+      setError(err instanceof Error ? err.message : "Failed to retrieve logs.");
     } finally {
       setLoading(false);
     }
@@ -559,7 +559,7 @@ export default function LogsPage() {
 
       <Flex direction="column" gap="20px" pt="15px">
         <SectionShell
-          title="Journaux d’activité"
+          title="Activity Logs"
           icon={<MdHistory />}
           count={filteredAdminLogs.length}
           open={activityOpen}
@@ -568,7 +568,7 @@ export default function LogsPage() {
           <Flex justify="space-between" gap="12px" wrap="wrap" mb="18px">
             <Flex gap="12px" wrap="wrap" flex="1">
               <Input
-                placeholder="Rechercher..."
+                placeholder="Search..."
                 value={activitySearch}
                 onChange={(e) => setActivitySearch(e.target.value)}
                 maxW="280px"
@@ -585,7 +585,7 @@ export default function LogsPage() {
                   borderRadius="14px"
                   borderColor="#E9EDF7"
                 >
-                  <option value="all">Toutes les actions</option>
+                  <option value="all">All actions</option>
                   <option value="login">login</option>
                   <option value="logout">logout</option>
                   <option value="register">register</option>
@@ -601,7 +601,7 @@ export default function LogsPage() {
                   borderRadius="14px"
                   borderColor="#E9EDF7"
                 >
-                  <option value="all">Tous les statuts</option>
+                  <option value="all">All statuses</option>
                   <option value="success">success</option>
                   <option value="failed">failed</option>
                 </NativeSelect.Field>
@@ -615,8 +615,8 @@ export default function LogsPage() {
                   borderRadius="14px"
                   borderColor="#E9EDF7"
                 >
-                  <option value="newest">Plus récents d’abord</option>
-                  <option value="oldest">Plus anciens d’abord</option>
+                  <option value="newest">Newest first</option>
+                  <option value="oldest">Oldest first</option>
                 </NativeSelect.Field>
               </NativeSelect.Root>
             </Flex>
@@ -631,14 +631,14 @@ export default function LogsPage() {
               onClick={fetchAllLogs}
             >
               <MdRefresh style={{ marginRight: 8 }} />
-              Actualiser
+              Refresh
             </Button>
           </Flex>
 
           {loading ? (
-            <Text color="#707EAE">Chargement des journaux d’activité...</Text>
+            <Text color="#707EAE">Loading activity logs...</Text>
           ) : filteredAdminLogs.length === 0 ? (
-            <Text color="#707EAE">Aucun journal d’activité trouvé.</Text>
+            <Text color="#707EAE">No activity logs found.</Text>
           ) : (
             <Flex direction="column" gap="14px">
               {filteredAdminLogs.map((log) => (
@@ -649,7 +649,7 @@ export default function LogsPage() {
         </SectionShell>
 
         <SectionShell
-          title="Journaux des requêtes"
+          title="Query Logs"
           icon={<MdTerminal />}
           count={filteredQueryLogs.length}
           open={queryOpen}
@@ -658,7 +658,7 @@ export default function LogsPage() {
           <Flex justify="space-between" gap="12px" wrap="wrap" mb="18px">
             <Flex gap="12px" wrap="wrap" flex="1">
               <Input
-                placeholder="Rechercher ..."
+                placeholder="Search..."
                 value={querySearch}
                 onChange={(e) => setQuerySearch(e.target.value)}
                 maxW="280px"
@@ -675,7 +675,7 @@ export default function LogsPage() {
                   borderRadius="14px"
                   borderColor="#E9EDF7"
                 >
-                  <option value="all">Tous les utilisateurs</option>
+                  <option value="all">All users</option>
                   {queryUsers.map((email) => (
                     <option key={email} value={email}>
                       {email}
@@ -709,8 +709,8 @@ export default function LogsPage() {
                   borderRadius="14px"
                   borderColor="#E9EDF7"
                 >
-                  <option value="newest">Plus récents d’abord</option>
-                  <option value="oldest">Plus anciens d’abord</option>
+                  <option value="newest">Newest first</option>
+                  <option value="oldest">Oldest first</option>
                 </NativeSelect.Field>
               </NativeSelect.Root>
             </Flex>
@@ -725,14 +725,14 @@ export default function LogsPage() {
               onClick={fetchAllLogs}
             >
               <MdRefresh style={{ marginRight: 8 }} />
-              Actualiser
+              Refresh
             </Button>
           </Flex>
 
           {loading ? (
-            <Text color="#707EAE">Chargement des journaux des requêtes...</Text>
+            <Text color="#707EAE">Loading query logs...</Text>
           ) : filteredQueryLogs.length === 0 ? (
-            <Text color="#707EAE">Aucun journal de requête trouvé.</Text>
+            <Text color="#707EAE">No query logs found.</Text>
           ) : (
             <Flex direction="column" gap="14px">
               {filteredQueryLogs.map((log) => (

@@ -176,7 +176,7 @@ export default function SignInPage() {
               mb="18px"
             >
               <Text fontSize="xs" fontWeight="700" letterSpacing="0.6px">
-                ESPACE PROFESSIONNEL
+                PROFESSIONAL WORKSPACE
               </Text>
             </Box>
 
@@ -187,7 +187,7 @@ export default function SignInPage() {
               maxW="420px"
               mb="18px"
             >
-              Connectez-vous à votre espace Text-to-SQL
+              Log in to your Text-to-SQL workspace
             </Heading>
 
             <Text
@@ -196,8 +196,8 @@ export default function SignInPage() {
               color="whiteAlpha.900"
               maxW="420px"
             >
-              Retrouvez vos conversations, votre historique et votre environnement
-              de travail IA dans une interface élégante, claire et structurée.
+              Find your conversations, history, and AI work environment
+              in an elegant, clear, and structured interface.
             </Text>
           </Box>
 
@@ -213,11 +213,11 @@ export default function SignInPage() {
             maxW="420px"
           >
             <Text fontSize="sm" fontWeight="700" mb="8px">
-              Accès sécurisé
+              Secure access
             </Text>
             <Text fontSize="sm" lineHeight="1.7" color="whiteAlpha.880">
-              Les identifiants de connexion sont fournis par l’administrateur de
-              votre entreprise.
+              Login credentials are provided by your company
+              administrator.
             </Text>
           </Box>
         </Flex>
@@ -239,7 +239,7 @@ export default function SignInPage() {
               letterSpacing="0.4px"
               mb="8px"
             >
-              CONNEXION
+              LOGIN
             </Text>
 
             <Heading
@@ -249,17 +249,17 @@ export default function SignInPage() {
               mb="10px"
               fontWeight="800"
             >
-              Se connecter
+              Sign in
             </Heading>
 
             <Text color={subtleText} fontSize="md" mb="28px" lineHeight="1.7">
-              Entrez vos identifiants pour accéder à votre environnement ask.
+              Enter your credentials to access your ASK environment.
             </Text>
 
             <Box as="form" onSubmit={handleSubmit}>
               <FormControl mb="24px">
                 <FormLabel color={textColor} fontSize="sm" fontWeight="700" mb="12px">
-                  Choisissez un compte de démonstration :
+                  Choose a demo account:
                 </FormLabel>
                 <RadioGroup onChange={(val: 'admin' | 'user') => setRole(val)} value={role}>
                   <Stack direction="column" spacing="16px">
@@ -274,8 +274,8 @@ export default function SignInPage() {
                     >
                       <Radio value="admin" colorScheme="purple" size="lg">
                         <Box ml="10px">
-                          <Text fontWeight="700" color={textColor}>Compte Administrateur</Text>
-                          <Text fontSize="sm" color={subtleText}>Accès complet : tableau de bord, utilisateurs, logs et requêtes illimitées.</Text>
+                          <Text fontWeight="700" color={textColor}>Administrator Account</Text>
+                          <Text fontSize="sm" color={subtleText}>Full access: dashboard, users, logs, and unlimited queries.</Text>
                         </Box>
                       </Radio>
                     </Box>
@@ -290,8 +290,8 @@ export default function SignInPage() {
                     >
                       <Radio value="user" colorScheme="purple" size="lg">
                         <Box ml="10px">
-                          <Text fontWeight="700" color={textColor}>Compte Utilisateur (Directeur)</Text>
-                          <Text fontSize="sm" color={subtleText}>Accès limité : recherche de base de données uniquement (Chat).</Text>
+                          <Text fontWeight="700" color={textColor}>User Account (Director)</Text>
+                          <Text fontSize="sm" color={subtleText}>Limited access: database search only (Chat).</Text>
                         </Box>
                       </Radio>
                     </Box>
@@ -302,7 +302,7 @@ export default function SignInPage() {
               <Flex align="center" mb="20px">
                 <Checkbox colorScheme="purple" defaultChecked>
                   <Text color={secondaryText} fontSize="sm">
-                    Se souvenir de moi
+                    Remember me
                   </Text>
                 </Checkbox>
               </Flex>
@@ -331,7 +331,7 @@ export default function SignInPage() {
                   bg: purpleGradient,
                 }}
               >
-                Se connecter
+                Sign in
               </Button>
             </Box>
           </Box>

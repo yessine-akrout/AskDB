@@ -99,7 +99,7 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
 
     const newConversation: Conversation = {
       id: createId(),
-      title: 'Nouvelle conversation',
+      title: 'New conversation',
       createdAt: now,
       updatedAt: now,
       messages: [],

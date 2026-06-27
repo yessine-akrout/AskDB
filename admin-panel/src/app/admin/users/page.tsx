@@ -83,8 +83,8 @@ function formatCreatedAt(value?: string | null) {
 
 function formatRole(role: string) {
   const labels: Record<string, string> = {
-    stagiaire: "Stagiaire",
-    directeur: "Directeur",
+    stagiaire: "Intern",
+    directeur: "Director",
     admin: "Admin",
   };
 
@@ -174,7 +174,7 @@ function UserRow({
 
   const fullName =
     [user.first_name, user.last_name].filter(Boolean).join(" ") ||
-    "Utilisateur sans nom";
+    "Unnamed user";
 
   const initials =
     user.first_name?.[0]?.toUpperCase() ||
@@ -261,7 +261,7 @@ function UserRow({
           loading={deleting}
         >
           <MdDeleteOutline style={{ marginRight: 6 }} />
-          Supprimer
+          Delete
         </Button>
       </Flex>
     </Flex>
@@ -336,7 +336,7 @@ export default function UsersPage() {
       setError("");
 
       if (process.env.NEXT_PUBLIC_DEMO_MODE === 'true') {
-        alert("La création d'utilisateur est désactivée en mode démo.");
+        alert("User creation is disabled in demo mode.");
         return;
       }
 
@@ -369,7 +369,7 @@ export default function UsersPage() {
   }
 
   async function handleDeleteUser(userId: string) {
-    const confirmed = window.confirm("Supprimer cet utilisateur ?");
+    const confirmed = window.confirm("Delete this user?");
     if (!confirmed) return;
 
     try {
@@ -377,7 +377,7 @@ export default function UsersPage() {
       setError("");
 
       if (process.env.NEXT_PUBLIC_DEMO_MODE === 'true') {
-        alert("La suppression d'utilisateur est désactivée en mode démo.");
+        alert("User deletion is disabled in demo mode.");
         setDeletingUserId(null);
         return;
       }
@@ -417,7 +417,7 @@ export default function UsersPage() {
       ) : null}
 
       <Grid templateColumns={{ base: "1fr" }} gap="20px" pt="15px">
-        <SectionCard title="Créer un utilisateur" icon={<MdAdd />}>
+        <SectionCard title="Create User" icon={<MdAdd />}>
           <Box as="form" onSubmit={handleCreateUser}>
             <Grid
               templateColumns={{ base: "1fr", md: "1fr 1fr" }}
@@ -425,7 +425,7 @@ export default function UsersPage() {
               mb="16px"
             >
               <Input
-                placeholder="Prénom"
+                placeholder="First name"
                 value={form.first_name}
                 onChange={(e) => updateForm("first_name", e.target.value)}
                 h="56px"
@@ -434,7 +434,7 @@ export default function UsersPage() {
                 _focusVisible={{ borderColor: "#4318FF", boxShadow: "none" }}
               />
               <Input
-                placeholder="Nom"
+                placeholder="Last name"
                 value={form.last_name}
                 onChange={(e) => updateForm("last_name", e.target.value)}
                 h="56px"
@@ -464,7 +464,7 @@ export default function UsersPage() {
               mb="16px"
             >
               <Input
-                placeholder="Mot de passe"
+                placeholder="Password"
                 type="password"
                 value={form.password}
                 onChange={(e) => updateForm("password", e.target.value)}
@@ -483,8 +483,8 @@ export default function UsersPage() {
                   borderRadius="16px"
                   borderColor="#E9EDF7"
                 >
-                  <option value="stagiaire">Stagiaire</option>
-                  <option value="directeur">Directeur</option>
+                  <option value="stagiaire">Intern</option>
+                  <option value="directeur">Director</option>
                   <option value="admin">Admin</option>
                 </NativeSelect.Field>
               </NativeSelect.Root>
@@ -492,7 +492,7 @@ export default function UsersPage() {
 
             <Grid templateColumns={{ base: "1fr" }} gap="16px" mb="20px">
               <Input
-                placeholder="URL de l'avatar (optionnel)"
+                placeholder="Avatar URL (optional)"
                 value={form.avatar_url}
                 onChange={(e) => updateForm("avatar_url", e.target.value)}
                 h="56px"
@@ -514,7 +514,7 @@ export default function UsersPage() {
                 loading={submitting}
               >
                 <MdAdd style={{ marginRight: 8 }} />
-                Créer l'utilisateur
+                Create user
               </Button>
             </Flex>
           </Box>
@@ -544,7 +544,7 @@ export default function UsersPage() {
               </Flex>
 
               <Text color="#1B2559" fontSize="22px" fontWeight="700">
-                Liste des utilisateurs
+                User List
               </Text>
             </Flex>
 
@@ -558,14 +558,14 @@ export default function UsersPage() {
               onClick={fetchUsers}
             >
               <MdRefresh style={{ marginRight: 8 }} />
-              Actualiser
+              Refresh
             </Button>
           </Flex>
 
           {loading ? (
-            <Text color="#707EAE">Chargement des utilisateurs...</Text>
+            <Text color="#707EAE">Loading users...</Text>
           ) : sortedUsers.length === 0 ? (
-            <Text color="#707EAE">Aucun utilisateur trouvé.</Text>
+            <Text color="#707EAE">No users found.</Text>
           ) : (
             <Flex direction="column" gap="14px">
               {sortedUsers.map((user) => (

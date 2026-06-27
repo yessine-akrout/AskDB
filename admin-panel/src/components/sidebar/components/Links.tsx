@@ -216,7 +216,7 @@ export function SidebarLinks(props: { routes: IRoute[] }) {
                             overflow="hidden"
                             textOverflow="ellipsis"
                           >
-                            {conv.title || "Nouvelle conversation"}
+                            {conv.title || "New conversation"}
                           </Text>
                         </Box>
                       );

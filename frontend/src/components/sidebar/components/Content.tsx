@@ -150,7 +150,7 @@ function SidebarContent(props: SidebarContentProps) {
           }}
           onClick={handleNewChat}
         >
-          +   Nouveau chat
+          +   New chat
         </Button>
 
         {/* Search */}
@@ -233,13 +233,13 @@ function SidebarContent(props: SidebarContentProps) {
                     color={textColor}
                     noOfLines={1}
                   >
-                    {conv.title || 'Nouvelle conversation'}
+                    {conv.title || 'New conversation'}
                   </Text>
                 </Box>
               ))
             ) : (
               <Text fontSize="sm" color={gray} px="4px">
-                aucune conversation trouvée
+                no conversations found
               </Text>
             )}
           </Stack>
@@ -286,7 +286,7 @@ function SidebarContent(props: SidebarContentProps) {
             </Text>
 
             <Text color={gray} fontSize="xs" fontWeight="500" noOfLines={1}>
-              {user?.role || 'user'}
+              {({ stagiaire: 'Intern', directeur: 'Director', admin: 'Admin' } as Record<string, string>)[user?.role || ''] || user?.role || 'user'}
             </Text>
           </Box>
 

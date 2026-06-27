@@ -44,7 +44,7 @@ type Conversation = {
 const createId = () =>
   `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
 
-function createNewConversation(title = "Nouvelle conversation"): Conversation {
+function createNewConversation(title = "New conversation"): Conversation {
   const now = new Date().toLocaleString();
 
   return {
@@ -223,7 +223,7 @@ function MessageCard({ message }: { message: ChatMessage }) {
             {isAccessDenied ? (
               <>
                 <Text color="#E31A1A" fontSize="15px" fontWeight="700" mb="10px">
-                  Accès refusé
+                  Access denied
                 </Text>
 
                 <Box
@@ -245,7 +245,7 @@ function MessageCard({ message }: { message: ChatMessage }) {
                   >
                     {message.responseData.message ||
                       message.responseData.sql ||
-                      "Vous n'avez pas l'autorisation d'accéder à ces données."}
+                      "You do not have permission to access this data."}
                   </Text>
                 </Box>
               </>
@@ -418,7 +418,7 @@ function ChatTestPageContent() {
     if (activeConversationId) return activeConversationId;
 
     const newConversation = createNewConversation(
-      firstQuestion?.slice(0, 40) || "Nouvelle conversation",
+      firstQuestion?.slice(0, 40) || "New conversation",
     );
 
     setConversations((prev) => {
@@ -485,7 +485,7 @@ function ChatTestPageContent() {
     updateConversationMessages(
       currentConversationId,
       (messages) => [...messages, userMessage],
-      currentConversation?.title === "Nouvelle conversation" || !currentConversation
+      currentConversation?.title === "New conversation" || !currentConversation
         ? trimmedInput.slice(0, 40)
         : undefined,
     );
@@ -606,7 +606,7 @@ function ChatTestPageContent() {
             lineHeight="100%"
             wordBreak="break-word"
           >
-            {activeConversation?.title || "Nouvelle conversation"}
+            {activeConversation?.title || "New conversation"}
           </Text>
 
           <Button
@@ -620,7 +620,7 @@ function ChatTestPageContent() {
             _hover={{ bg: "#3311DB" }}
           >
             <MdEdit style={{ marginRight: 8 }} />
-            Nouveau Chat
+            New Chat
           </Button>
         </Flex>
 
@@ -645,11 +645,11 @@ function ChatTestPageContent() {
               minW="0"
             >
               <Text color="#1B2559" fontSize="28px" fontWeight="700" mb="10px">
-                Test de discussion
+                Chat Test
               </Text>
 
               <Text color="#707EAE" fontSize="16px" maxW="520px">
-                Tester les prompts, le SQL généré et les réponses du backend avec la même expérience de chat que l’interface principale.
+                Test prompts, Generated SQL, and backend responses with the same chat experience as the main interface.
               </Text>
             </Flex>
           ) : (
@@ -704,7 +704,7 @@ function ChatTestPageContent() {
                 minW="fit-content"
                 _hover={{ bg: "#3311DB" }}
               >
-                {loading ? "..." : "Envoyer"}
+                {loading ? "..." : "Send"}
               </Button>
             </Flex>
           </Box>

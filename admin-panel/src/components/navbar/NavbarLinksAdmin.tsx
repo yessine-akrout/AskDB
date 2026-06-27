@@ -249,10 +249,10 @@ export default function NavbarLinksAdmin() {
             border={`1px solid ${borderColor}`}
           >
             <Text color={textColor} fontSize="14px" fontWeight="700" mb="4px">
-              À propos du panneau d’administration
+              About the admin panel
             </Text>
             <Text color={mutedColor} fontSize="13px" lineHeight="1.5">
-              gérez les utilisateurs et surveillez l’espace d’administration ASKDB.
+              manage users and monitor the ASKDB administration space.
             </Text>
           </Box>
         )}
@@ -342,7 +342,7 @@ export default function NavbarLinksAdmin() {
             </Box>
 
             <Text fontWeight="600" color={textColor} fontSize="14px">
-              👋 Bonjour, {helloName}
+              👋 Hello, {helloName}
             </Text>
           </Flex>
 
@@ -357,7 +357,7 @@ export default function NavbarLinksAdmin() {
             _hover={{ bg: isDark ? "rgba(255,255,255,0.04)" : "#FFF5F5" }}
             onClick={handleLogout}
           >
-            Se déconnecter
+            Sign out
           </Box>
           </Box>
         )}

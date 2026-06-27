@@ -123,7 +123,7 @@ export default function Chat() {
     scrollToBottom();
   }, [activeMessages.length]);
 
-  const createNewConversation = (title = 'Nouvelle conversation') => {
+  const createNewConversation = (title = 'New conversation') => {
     const now = new Date().toLocaleString();
 
     return {
@@ -139,7 +139,7 @@ export default function Chat() {
     if (activeConversationId) return activeConversationId;
 
     const newConversation = createNewConversation(
-      firstQuestion?.slice(0, 40) || 'Nouvelle conversation',
+      firstQuestion?.slice(0, 40) || 'New conversation',
     );
 
     setConversations((prev) => [newConversation, ...prev]);
@@ -172,13 +172,13 @@ export default function Chat() {
     const maxCodeLength = 700;
 
     if (!trimmedInput) {
-      alert('Veuillez saisir votre question.');
+      alert('Please enter your question.');
       return;
     }
 
     if (trimmedInput.length > maxCodeLength) {
       alert(
-        `Veuillez saisir moins de ${maxCodeLength} caractères. Vous êtes actuellement à ${trimmedInput.length} caractères.`,
+        `Please enter less than ${maxCodeLength} characters. You are currently at ${trimmedInput.length} characters.`,
       );
       return;
     }
@@ -198,7 +198,7 @@ export default function Chat() {
     updateConversationMessages(
       currentConversationId,
       (messages) => [...messages, userMessage],
-      currentConversation?.title === 'Nouvelle conversation' || !currentConversation
+      currentConversation?.title === 'New conversation' || !currentConversation
         ? trimmedInput.slice(0, 40)
         : undefined,
     );
@@ -305,7 +305,7 @@ export default function Chat() {
       const assistantMessage: ChatMessage = {
         id: createId(),
         role: 'assistant',
-        content: data.message || data.sql || 'Réponse reçue',
+        content: data.message || data.sql || 'Response received',
         responseData: data,
       };
 
@@ -319,8 +319,8 @@ export default function Chat() {
       const assistantErrorMessage: ChatMessage = {
         id: createId(),
         role: 'assistant',
-        content: 'Impossible de se connecter au backend FastAPI.',
-        outputCode: `Impossible de se connecter au backend FastAPI.\n\n${error?.message || 'Erreur inconnue'
+        content: 'Unable to connect to the FastAPI backend.',
+        outputCode: `Unable to connect to the FastAPI backend.\n\n${error?.message || 'Unknown error'
           }`,
       };
 
@@ -387,7 +387,7 @@ export default function Chat() {
                   <Text color={gray} fontWeight="500" fontSize="sm">
                     {process.env.NEXT_PUBLIC_DEMO_MODE === 'true' 
                       ? 'Demo Mode — predefined Northwind examples for online stability' 
-                      : 'Connecté au backend FastAPI local'}
+                      : 'Connected to local FastAPI backend'}
                   </Text>
                 </Box>
                 <AccordionIcon color={gray} />
@@ -491,7 +491,7 @@ export default function Chat() {
                     <Flex direction="column" gap="18px">
                       <Box>
                         <Text color={gray} fontSize="sm" mb="6px" fontWeight="600">
-                          SQL généré
+                          Generated SQL
                         </Text>
 
                         <Box
@@ -504,13 +504,13 @@ export default function Chat() {
                           overflowX="auto"
                           color={textColor}
                         >
-                          {message.responseData.sql || 'Aucun SQL retourné'}
+                          {message.responseData.sql || 'No SQL returned'}
                         </Box>
                       </Box>
 
                       <Box>
                         <Text color={gray} fontSize="sm" mb="6px" fontWeight="600">
-                          Résultat
+                          Result
                         </Text>
 
                         <ResultTable 
@@ -617,7 +617,7 @@ export default function Chat() {
                 onClick={handleTranslate}
                 isLoading={loading}
               >
-                Envoyer
+                Send
               </Button>
             </Flex>
           </Flex>
