@@ -96,14 +96,14 @@ export default function HeaderLinks(props: { secondary: boolean }) {
         >
           <Flex flexDirection="column">
             <Text fontSize="sm" fontWeight="600" mb="10px" color={textColor}>
-              À propos
+              About
             </Text>
             <Text fontSize="sm" color={textColor}>
-              ASK DB permet d’interroger une base de données
+              ASK DB allows you to query a database
                           </Text>
             <Text fontSize="sm" color={textColor}>
 
-              en langage naturel, de façon simple et sécurisée.
+              in natural language, securely and easily.
             </Text>
           </Flex>
         </MenuList>
@@ -196,7 +196,7 @@ export default function HeaderLinks(props: { secondary: boolean }) {
               onClick={handleLogout}
             >
               <Text fontWeight="500" fontSize="sm">
-                Se déconnecter
+                Sign out
               </Text>
             </MenuItem>
           </Flex>

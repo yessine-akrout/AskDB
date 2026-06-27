@@ -137,7 +137,7 @@ function getLast7DaysData(logs: QueryLog[]) {
 
     return {
       date,
-      label: date.toLocaleDateString("fr-FR", { weekday: "short" }),
+      label: date.toLocaleDateString("en-US", { weekday: "short" }),
       count: 0,
     };
   });
@@ -212,7 +212,7 @@ function QueriesThisWeekCard({ logs }: { logs: QueryLog[] }) {
       <Flex justify="space-between" align="center" mb="24px">
         <Box>
           <Text color="#1B2559" fontSize="30px" fontWeight="600" lineHeight="100%">
-            Requêtes cette semaine
+            Queries this week
           </Text>
 
           <Text color="#A3AED0" fontSize="sm" fontWeight="500" mt="8px">
@@ -293,7 +293,7 @@ function StatusBreakdownCard({ logs }: { logs: QueryLog[] }) {
       <Flex justify="space-between" align="center" mb="24px">
         <Box>
           <Text color="#1B2559" fontSize="30px" fontWeight="600" lineHeight="100%">
-            Répartition des statuts
+            Status Breakdown
           </Text>
 
           <Text color="#A3AED0" fontSize="sm" fontWeight="500" mt="8px">

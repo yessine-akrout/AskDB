@@ -16,13 +16,13 @@ const routes: IRoute[] = [
     icon: <Icon as={MdPeople} width="20px" height="20px" color="inherit" />,
   },
   {
-    name: "Journaux",
+    name: "Logs",
     layout: "/admin",
     path: "/logs",
     icon: <Icon as={MdHistory} width="20px" height="20px" color="inherit" />,
   },
   {
-    name: "Test de discussion",
+    name: "Chat Test",
     layout: "/admin",
     path: "/chat",
     icon: <Icon as={MdSmartToy} width="20px" height="20px" color="inherit" />,
