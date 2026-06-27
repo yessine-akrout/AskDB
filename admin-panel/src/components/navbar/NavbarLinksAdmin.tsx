@@ -17,7 +17,7 @@ type AuthUser = {
 const USER_STORAGE_KEY = "auth_user";
 const TOKEN_STORAGE_KEY = "auth_token";
 const THEME_STORAGE_KEY = "admin_theme";
-const COMMON_LOGIN_URL = "http://localhost:3000/auth/sign-in?logout=1";
+const COMMON_LOGIN_URL = `${process.env.NEXT_PUBLIC_FRONTEND_URL || "http://localhost:3000"}/auth/sign-in?logout=1`;
 
 function readStoredUser(): AuthUser | null {
   if (typeof window === "undefined") return null;

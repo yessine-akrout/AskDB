@@ -91,7 +91,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             return;
           }
 
-          window.location.href = MAIN_APP_URL;
+          window.location.href = '/';
           return;
         }
       }
@@ -127,7 +127,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    window.location.href = MAIN_APP_URL;
+    window.location.href = '/';
   };
 
   const logout = () => {
