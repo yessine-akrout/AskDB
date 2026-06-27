@@ -2,7 +2,7 @@ import os
 import pyodbc
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(override=True)
 
 DB_DRIVER = os.getenv("DB_DRIVER", "SQL Server")
 DB_SERVER = os.getenv("DB_SERVER")

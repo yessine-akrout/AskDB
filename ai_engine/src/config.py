@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+load_dotenv(override=True)
 DB_DRIVER=os.getenv("DB_DRIVER")
 DB_SERVER=os.getenv("DB_SERVER")
 DB_DATABASE=os.getenv("DB_DATABASE")
