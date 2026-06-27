@@ -139,7 +139,7 @@ export default function NavbarLinksAdmin() {
       if (process.env.NEXT_PUBLIC_DEMO_MODE === 'true') {
         localStorage.removeItem(TOKEN_STORAGE_KEY);
         localStorage.removeItem(USER_STORAGE_KEY);
-        window.location.href = "/auth/login";
+        window.location.href = COMMON_LOGIN_URL;
         return;
       }
         await fetch(`${API_BASE_URL}/auth/logout`, {
