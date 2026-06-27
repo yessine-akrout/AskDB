@@ -1,9 +1,9 @@
 """
-RBAC configuration for the Text-to-SQL project.
+RBAC configuration for the AskDB Text-to-SQL project.
 
-French role version:
-- stagiaire: limited access to simple operational/reference tables.
-- directeur: full database access.
+Northwind database version:
+- intern: limited access to safe reference/operational tables.
+- director: full database access.
 - admin: full database access.
 
 Use this file before retrieval/prompting and before executing generated SQL.
@@ -12,7 +12,6 @@ Use this file before retrieval/prompting and before executing generated SQL.
 from __future__ import annotations
 
 import re
-from typing import Iterable
 
 
 # -------------------------------------------------------------------
@@ -20,77 +19,58 @@ from typing import Iterable
 # -------------------------------------------------------------------
 
 ROLE_TABLE_ACCESS: dict[str, dict[str, list[str]]] = {
-    "stagiaire": {
-        # Real tables selected from the UNILOG schema.
-        # Simple operational/reference data only.
+    "intern": {
+        # Safe Northwind tables for limited demo access.
+        # Orders, Order Details, invoices, and sales views are blocked.
         "allowed_tables": [
-            "Art",
-            "ArtCat",
-            "ArtUnit",
-            "ArtSite",
-            "ArtBarCode",
-            "Unite",
-            "Stock",
-            "StockEmp",
-            "Site",
-            "Clients",
-            "Tiers",
-            "TiersC",
-            "TiersType",
-            "Fournisseurs",
+            "Categories",
+            "Products",
+            "Suppliers",
+            "Customers",
+            "Employees",
+            "Shippers",
+            "Region",
+            "Territories",
+            "EmployeeTerritories",
+            "CustomerDemographics",
+            "CustomerCustomerDemo",
         ],
-        # Block sensitive business/finance/payment/payroll questions.
+
+        # Business/sales/financial keywords blocked for interns.
         "blocked_keywords": [
-            "salaire",
-            "salary",
-            "paie",
-            "payroll",
-            "prime",
-            "bonus",
-            "cnss",
-            "banque",
-            "bank",
-            "rib",
-            "caisse",
-            "payment",
-            "paiement",
-            "règlement",
-            "reglement",
-            "facture",
-            "invoice",
-            "chiffre d'affaires",
-            "chiffre d affaire",
-            "ca",
-            "revenu",
             "revenue",
+            "sales",
+            "sale",
             "profit",
-            "bénéfice",
-            "benefice",
-            "marge",
-            "montant",
-            "total ventes",
-            "vente",
-            "ventes",
-            "achat",
-            "achats",
-            "tva",
-            "taxe",
-            "tax",
-            "comptabilité",
-            "comptabilite",
-            "accounting",
-            "gacc",
+            "margin",
+            "amount",
+            "price",
+            "unit price",
+            "discount",
+            "freight",
+            "invoice",
+            "invoices",
+            "payment",
+            "subtotal",
+            "total sales",
+            "turnover",
+            "cost",
+            "order details",
+            "most expensive",
+            "top customers",
+            "best customers",
+            "customer revenue",
         ],
     },
 
-    "directeur": {
-        # Direction/CEO can access the full database.
+    "director": {
+        # Director can access the full Northwind database.
         "allowed_tables": ["*"],
         "blocked_keywords": [],
     },
 
     "admin": {
-        # Admin can access the full database.
+        # Admin can access the full Northwind database.
         "allowed_tables": ["*"],
         "blocked_keywords": [],
     },
@@ -98,44 +78,40 @@ ROLE_TABLE_ACCESS: dict[str, dict[str, list[str]]] = {
 
 
 # -------------------------------------------------------------------
-# 2. Sensitive tables/prefixes blocked for non-full-access roles
+# 2. Sensitive Northwind tables/views blocked for limited roles
 # -------------------------------------------------------------------
 
 SENSITIVE_TABLE_NAMES: set[str] = {
-    "Reglement",
-    "ReglementD",
-    "ReglementS",
-    "Banque",
-    "BanqueC",
-    "BanqueCrd",
-    "BanqueCrdD",
-    "BanqueD",
-    "BanqueT",
-    "Caisse",
-    "Document",
-    "DocumentD",
-    "DocumentA",
-    "DocumentBD",
-    "DocumentBE",
-    "DocumentCalc",
-    "DocumentComp",
-    "DocumentCompD",
-    "DocumentCompE",
-    "TVAImpot",
-    "GRHDataPaie",
-    "GRHDataPaieV",
-    "GRHVir",
-    "GRHVirD",
-    "GRHVirParam",
+    # Sales/order financial data
+    "Orders",
+    "Order Details",
+
+    # Common Northwind views containing sales, prices, invoices, or totals
+    "Invoices",
+    "Order Details Extended",
+    "Order Subtotals",
+    "Sales by Category",
+    "Sales Totals by Amount",
+    "Summary of Sales by Quarter",
+    "Summary of Sales by Year",
+    "Category Sales for 1997",
+    "Product Sales for 1997",
+    "Products Above Average Price",
+    "Ten Most Expensive Products",
+
+    # Internal AskDB tables if stored in the same SQL Server database
+    "query_logs",
+    "admin_logs",
+    "users",
 }
 
 SENSITIVE_TABLE_PREFIXES: tuple[str, ...] = (
-    "Gacc",        # accounting tables
-    "Reg",         # payment/settlement tables
-    "Banque",      # bank tables
-    "Caisse",      # cash tables
-    "Document",    # sales/purchase documents with amounts
-    "GRHDataPaie", # payroll tables
+    "Sales",
+    "Invoice",
+    "Payment",
+    "Revenue",
+    "Profit",
+    "Summary of Sales",
 )
 
 
@@ -144,38 +120,38 @@ SENSITIVE_TABLE_PREFIXES: tuple[str, ...] = (
 # -------------------------------------------------------------------
 
 def normalize_role(role: str | None) -> str:
-    """Return a normalized French role name."""
+    """Return a normalized role name."""
     if not role:
-        return "stagiaire"
+        return "intern"
 
     role = role.strip().lower()
 
     aliases = {
         # Limited access
-        "intern": "stagiaire",
-        "stagiaire": "stagiaire",
-        "student": "stagiaire",
-        "employee": "stagiaire",
-        "employe": "stagiaire",
-        "employé": "stagiaire",
+        "intern": "intern",
+        "student": "intern",
+        "employee": "intern",
 
-        # Full access - director/CEO
-        "ceo": "directeur",
-        "directeur": "directeur",
-        "direction": "directeur",
-        "director": "directeur",
-        "manager": "directeur",
+        # Keep these aliases only in case old demo users still use them
+        "stagiaire": "intern",
+
+        # Full access - director
+        "director": "director",
+        "manager": "director",
+        "ceo": "director",
+
+        # Keep this alias only in case old demo users still use it
+        "directeur": "director",
 
         # Full access - admin
         "admin": "admin",
         "administrator": "admin",
-        "admin": "admin",
     }
 
     normalized = aliases.get(role, role)
 
     if normalized not in ROLE_TABLE_ACCESS:
-        return "stagiaire"
+        return "intern"
 
     return normalized
 
@@ -188,33 +164,57 @@ def get_allowed_tables(role: str | None) -> list[str]:
 
 def has_full_access(role: str | None) -> bool:
     """Return True if the role has full database access."""
-    return normalize_role(role) in {"directeur", "admin"}
+    return normalize_role(role) in {"director", "admin"}
 
 
 def clean_sql_identifier(identifier: str) -> str:
-    """Clean SQL identifier and keep only the table part."""
-    identifier = identifier.strip()
-    identifier = identifier.replace("[", "").replace("]", "")
+    """
+    Clean SQL identifier and keep only the table/view name.
 
-    # If SQL uses dbo.TableName, keep only TableName.
+    Examples:
+    - dbo.Customers              -> Customers
+    - [dbo].[Order Details]      -> Order Details
+    - NORTHWIND_DB.dbo.Products  -> Products
+    """
+    identifier = identifier.strip()
+
+    identifier = identifier.replace("[", "").replace("]", "")
+    identifier = identifier.replace('"', "")
+    identifier = identifier.replace("`", "")
+
+    # If SQL uses database.schema.table or schema.table, keep only table.
     if "." in identifier:
         identifier = identifier.split(".")[-1]
 
     return identifier.strip()
 
 
-def is_sensitive_table(table_name: str) -> bool:
-    """Return True if the table is considered sensitive for non-full-access roles."""
-    clean_name = clean_sql_identifier(table_name)
+def normalize_identifier(identifier: str) -> str:
+    """Normalize SQL identifier for comparison."""
+    return clean_sql_identifier(identifier).lower()
 
-    if clean_name in SENSITIVE_TABLE_NAMES:
+
+def is_sensitive_table(table_name: str) -> bool:
+    """Return True if the table/view is sensitive for limited roles."""
+    clean_name = clean_sql_identifier(table_name)
+    normalized_name = normalize_identifier(clean_name)
+
+    sensitive_names = {
+        normalize_identifier(name)
+        for name in SENSITIVE_TABLE_NAMES
+    }
+
+    if normalized_name in sensitive_names:
         return True
 
-    return clean_name.startswith(SENSITIVE_TABLE_PREFIXES)
+    return any(
+        normalized_name.startswith(prefix.lower())
+        for prefix in SENSITIVE_TABLE_PREFIXES
+    )
 
 
 def is_table_allowed(table_name: str, role: str | None) -> bool:
-    """Check if a table can be accessed by a role."""
+    """Check if a table/view can be accessed by a role."""
     role = normalize_role(role)
     clean_name = clean_sql_identifier(table_name)
     allowed_tables = get_allowed_tables(role)
@@ -225,17 +225,24 @@ def is_table_allowed(table_name: str, role: str | None) -> bool:
     if is_sensitive_table(clean_name):
         return False
 
-    return clean_name in allowed_tables
+    allowed_tables_normalized = {
+        normalize_identifier(table)
+        for table in allowed_tables
+    }
+
+    return normalize_identifier(clean_name) in allowed_tables_normalized
 
 
 def normalize_text(text: str) -> str:
     """Normalize text for keyword checks."""
-    text = text.lower().strip()
-    text = text.replace("’", "'")
-    text = text.replace("`", "'")
-    text = text.replace("´", "'")
-    text = text.replace("‘", "'")
-    return text
+    return (
+        text.lower()
+        .strip()
+        .replace("’", "'")
+        .replace("`", "'")
+        .replace("´", "'")
+        .replace("‘", "'")
+    )
 
 
 def contains_blocked_keyword(text: str, role: str | None) -> bool:
@@ -255,24 +262,33 @@ def contains_blocked_keyword(text: str, role: str | None) -> bool:
 
 
 def validate_user_question_access(question: str, role: str | None) -> bool:
+    """
+    Validate natural-language question before retrieval/prompting.
+
+    Return:
+    - True  -> question is allowed
+    - False -> reject with ACCESS_DENIED
+    """
     return not contains_blocked_keyword(question, role)
 
 
 def extract_tables_from_sql(sql: str) -> list[str]:
     """
-    Extract table names used after FROM/JOIN.
+    Extract table/view names used after FROM/JOIN.
 
     Supports:
-    - FROM TableName
-    - JOIN TableName
-    - FROM dbo.TableName
-    - JOIN [dbo].[TableName]
-    - JOIN [TableName]
+    - FROM Customers
+    - JOIN Products
+    - FROM dbo.Customers
+    - JOIN [Order Details]
+    - JOIN [dbo].[Order Details]
+    - FROM NORTHWIND_DB.dbo.Customers
     """
+    identifier_part = r'(?:\[[^\]]+\]|"[^"]+"|[A-Za-z_][A-Za-z0-9_]*)'
+
     pattern = (
         r"\b(?:FROM|JOIN)\s+"
-        r"((?:\[[^\]]+\]|[A-Za-z0-9_]+)"
-        r"(?:\.(?:\[[^\]]+\]|[A-Za-z0-9_]+))?)"
+        rf"({identifier_part}(?:\s*\.\s*{identifier_part}){{0,2}})"
     )
 
     matches = re.findall(pattern, sql, flags=re.IGNORECASE)
@@ -291,7 +307,7 @@ def validate_sql_table_access(sql: str, role: str | None) -> bool:
     Validate generated SQL after LLM generation and before execution.
 
     Return:
-    - True  -> SQL uses only allowed tables
+    - True  -> SQL uses only allowed tables/views
     - False -> reject with ACCESS_DENIED
     """
     if has_full_access(role):
@@ -306,5 +322,3 @@ def validate_sql_table_access(sql: str, role: str | None) -> bool:
         is_table_allowed(table, role)
         for table in used_tables
     )
-
-
