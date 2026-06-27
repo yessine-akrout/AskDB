@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Box, Button, Flex, Input, Text } from "@chakra-ui/react";
 import { MdAutoAwesome, MdEdit, MdPerson } from "react-icons/md";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:5000";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
 const STORAGE_KEY = "admin_chat_test_conversations";
 const ACTIVE_KEY = "admin_chat_test_active_conversation_id";
 const HISTORY_EVENT = "admin-chat-history-updated";
