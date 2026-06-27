@@ -68,11 +68,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     if (process.env.NEXT_PUBLIC_DEMO_MODE === 'true') {
       const emailLower = email.trim().toLowerCase();
-      if (password === 'demo123') {
+      if (password === '1234') {
         let mockUser = null;
-        if (emailLower === 'messi@askdb.demo' || emailLower === 'admin@askdb.demo') {
+        if (emailLower === 'messi@gmail.com') {
           mockUser = { id: 'demo-id-admin', email: emailLower, first_name: 'Messi', last_name: 'Admin', role: 'admin' };
-        } else if (emailLower === 'yessine@askdb.demo' || emailLower === 'user@askdb.demo') {
+        } else if (emailLower === 'yessine.akrout123@gmail.com') {
           mockUser = { id: 'demo-id-user', email: emailLower, first_name: 'Yessine', last_name: 'Akrout', role: 'directeur' };
         }
 
