@@ -591,7 +591,7 @@ export default function Chat() {
                 }}
                 color={inputColor}
                 _placeholder={placeholderColor}
-                placeholder="Posez votre question ici..."
+                placeholder="Ask your question here..."
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
                 value={inputCode}

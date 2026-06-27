@@ -676,7 +676,7 @@ function ChatTestPageContent() {
                 value={inputCode}
                 onChange={(e) => setInputCode(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Posez votre question ici..."
+                placeholder="Ask your question here..."
                 border="none"
                 minW="0"
                 _focus={{

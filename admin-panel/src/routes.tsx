@@ -4,7 +4,7 @@ import { IRoute } from "@/types/navigation";
 
 const routes: IRoute[] = [
   {
-    name: "Tableau de bord",
+    name: "Dashboard",
     layout: "/admin",
     path: "/dashboard",
     icon: <Icon as={MdHome} width="20px" height="20px" color="inherit" />,

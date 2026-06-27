@@ -52,7 +52,7 @@ export default function SignInPage() {
       await login(demoEmail, '1234');
       // Router push is handled in AuthContext for demo mode based on role
     } catch (error: any) {
-      setErrorMessage(error?.message || 'Connexion impossible.');
+      setErrorMessage(error?.message || 'Login failed.');
     } finally {
       setSubmitting(false);
     }

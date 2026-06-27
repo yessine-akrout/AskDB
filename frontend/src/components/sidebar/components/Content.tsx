@@ -159,7 +159,7 @@ function SidebarContent(props: SidebarContentProps) {
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setSearchQuery(e.target.value)
           }
-          placeholder="Rechercher une conversation..."
+          placeholder="Search a conversation..."
           borderRadius="45px"
           h="44px"
           w="100%"
