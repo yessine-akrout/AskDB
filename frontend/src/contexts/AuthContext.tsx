@@ -66,13 +66,35 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       throw new Error('Veuillez remplir tous les champs.');
     }
 
-    if (process.env.NEXT_PUBLIC_DEMO_MODE === 'true' && email.trim() === 'admin@askdb.demo' && password === 'demo123') {
-      const mockUser = { id: 'demo-id', email: 'admin@askdb.demo', first_name: 'Demo', last_name: 'Admin', role: 'admin' };
-      localStorage.setItem(TOKEN_STORAGE_KEY, 'mock-demo-token');
-      localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(mockUser));
-      setToken('mock-demo-token');
-      setUser(mockUser);
-      return;
+    if (process.env.NEXT_PUBLIC_DEMO_MODE === 'true') {
+      const emailLower = email.trim().toLowerCase();
+      if (password === 'demo123') {
+        let mockUser = null;
+        if (emailLower === 'messi@askdb.demo' || emailLower === 'admin@askdb.demo') {
+          mockUser = { id: 'demo-id-admin', email: emailLower, first_name: 'Messi', last_name: 'Admin', role: 'admin' };
+        } else if (emailLower === 'yessine@askdb.demo' || emailLower === 'user@askdb.demo') {
+          mockUser = { id: 'demo-id-user', email: emailLower, first_name: 'Yessine', last_name: 'Akrout', role: 'directeur' };
+        }
+
+        if (mockUser) {
+          const data = { access_token: 'mock-demo-token', user: mockUser };
+          
+          localStorage.setItem(TOKEN_STORAGE_KEY, data.access_token);
+          localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(data.user));
+          setToken(data.access_token);
+          setUser(data.user);
+
+          if (data.user?.role === 'admin') {
+            const encodedToken = encodeURIComponent(data.access_token);
+            const encodedUser = encodeURIComponent(JSON.stringify(data.user));
+            window.location.href = `${ADMIN_PANEL_URL}?token=${encodedToken}&user=${encodedUser}`;
+            return;
+          }
+
+          window.location.href = MAIN_APP_URL;
+          return;
+        }
+      }
     }
 
     const res = await fetch(`${BACKEND_URL}/auth/login`, {
