@@ -14,6 +14,9 @@ import {
   InputRightElement,
   Text,
   useColorModeValue,
+  RadioGroup,
+  Radio,
+  Stack,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
@@ -21,9 +24,7 @@ import { useRouter } from 'next/navigation';
 import { useAuthContext } from '@/contexts/AuthContext';
 
 export default function SignInPage() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [role, setRole] = useState<'admin' | 'user'>('user');
   const [submitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -47,8 +48,9 @@ export default function SignInPage() {
     setSubmitting(true);
 
     try {
-      await login(email, password);
-      router.push('/');
+      const demoEmail = role === 'admin' ? 'messi@gmail.com' : 'yessine.akrout123@gmail.com';
+      await login(demoEmail, '1234');
+      // Router push is handled in AuthContext for demo mode based on role
     } catch (error: any) {
       setErrorMessage(error?.message || 'Connexion impossible.');
     } finally {
@@ -255,68 +257,46 @@ export default function SignInPage() {
             </Text>
 
             <Box as="form" onSubmit={handleSubmit}>
-              <FormControl mb="18px" isRequired>
-                <FormLabel color={textColor} fontSize="sm" fontWeight="700" mb="8px">
-                  Adresse e-mail
+              <FormControl mb="24px">
+                <FormLabel color={textColor} fontSize="sm" fontWeight="700" mb="12px">
+                  Choisissez un compte de démonstration :
                 </FormLabel>
-                <Input
-                  type="email"
-                  placeholder="nom@entreprise.com"
-                  h="56px"
-                  borderRadius="18px"
-                  bg={inputBg}
-                  border="1px solid"
-                  borderColor={inputBorder}
-                  fontSize="md"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  _placeholder={{ color: subtleText }}
-                  _focus={{
-                    borderColor: '#7B5AFF',
-                    boxShadow: '0 0 0 1px #7B5AFF',
-                  }}
-                />
-              </FormControl>
-
-              <FormControl mb="20px" isRequired>
-                <FormLabel color={textColor} fontSize="sm" fontWeight="700" mb="8px">
-                  Mot de passe
-                </FormLabel>
-
-                <InputGroup>
-                  <Input
-                    type={showPassword ? 'text' : 'password'}
-                    placeholder="Entrez votre mot de passe"
-                    h="56px"
-                    borderRadius="18px"
-                    bg={inputBg}
-                    border="1px solid"
-                    borderColor={inputBorder}
-                    pr="52px"
-                    fontSize="md"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    _placeholder={{ color: subtleText }}
-                    _focus={{
-                      borderColor: '#7B5AFF',
-                      boxShadow: '0 0 0 1px #7B5AFF',
-                    }}
-                  />
-                  <InputRightElement h="56px" pr="8px">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => setShowPassword((prev) => !prev)}
-                      _hover={{ bg: 'transparent' }}
-                      _active={{ bg: 'transparent' }}
+                <RadioGroup onChange={(val: 'admin' | 'user') => setRole(val)} value={role}>
+                  <Stack direction="column" spacing="16px">
+                    <Box
+                      p="16px"
+                      borderWidth="1px"
+                      borderRadius="12px"
+                      borderColor={role === 'admin' ? '#7B5AFF' : inputBorder}
+                      bg={role === 'admin' ? 'rgba(123,90,255,0.05)' : inputBg}
+                      cursor="pointer"
+                      onClick={() => setRole('admin')}
                     >
-                      <Icon
-                        as={showPassword ? ViewOffIcon : ViewIcon}
-                        color={secondaryText}
-                      />
-                    </Button>
-                  </InputRightElement>
-                </InputGroup>
+                      <Radio value="admin" colorScheme="purple" size="lg">
+                        <Box ml="10px">
+                          <Text fontWeight="700" color={textColor}>Compte Administrateur</Text>
+                          <Text fontSize="sm" color={subtleText}>Accès complet : tableau de bord, utilisateurs, logs et requêtes illimitées.</Text>
+                        </Box>
+                      </Radio>
+                    </Box>
+                    <Box
+                      p="16px"
+                      borderWidth="1px"
+                      borderRadius="12px"
+                      borderColor={role === 'user' ? '#7B5AFF' : inputBorder}
+                      bg={role === 'user' ? 'rgba(123,90,255,0.05)' : inputBg}
+                      cursor="pointer"
+                      onClick={() => setRole('user')}
+                    >
+                      <Radio value="user" colorScheme="purple" size="lg">
+                        <Box ml="10px">
+                          <Text fontWeight="700" color={textColor}>Compte Utilisateur (Directeur)</Text>
+                          <Text fontSize="sm" color={subtleText}>Accès limité : recherche de base de données uniquement (Chat).</Text>
+                        </Box>
+                      </Radio>
+                    </Box>
+                  </Stack>
+                </RadioGroup>
               </FormControl>
 
               <Flex align="center" mb="20px">
