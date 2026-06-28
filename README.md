@@ -73,7 +73,6 @@ https://github.com/yessine-akrout/AskDB/raw/main/demo.mp4
 - 👤 **User authentication** — JWT-based login/register
 - 🖥️ **Admin panel** — manage users, view audit logs and query history
 - 📱 **Fully Responsive UI** — works flawlessly on mobile, tablet, and desktop
-- ⚡ **ChromaDB** — pre-built schema embeddings for fast schema retrieval
 
 ---
 
@@ -101,14 +100,14 @@ Once everything is running, try asking the AI these questions (which are specifi
 
 ---
 
-## Prerequisites
+## Tech Stack & Prerequisites
 
 | Tool | Version | Purpose |
 |------|---------|---------|
-| Python | 3.11+ | AI engine & backend |
-| Node.js | 18+ | Frontend & admin panel |
+| Python | 3.11+ | AI engine & backend (FastAPI, sentence-transformers, ChromaDB) |
+| Node.js | 18+ | Frontend & admin panel (Next.js, TypeScript) |
 | SQL Server Express | 2019+ | Databases |
-| LM Studio | Latest | Local LLM runner |
+| LM Studio | Latest | Local LLM runner (qwen2.5-coder-7b-instruct) |
 | SSMS (optional) | Any | DB management |
 
 ### Required SQL Server Databases
@@ -245,18 +244,6 @@ npm run dev
 
 ---
 
-## Port Summary
-
-| Service | Port | URL |
-|---------|------|-----|
-| AI Engine (FastAPI) | 5000 | http://localhost:5000 |
-| Backend (FastAPI) | 5001 | http://localhost:5001 |
-| Frontend (Next.js) | Auto | http://localhost:3000 (default) |
-| Admin Panel (Next.js) | Auto | http://localhost:3001 (default) |
-| LM Studio | 1234 | http://localhost:1234 |
-
----
-
 ## Key API Endpoints
 
 ### AI Engine (`localhost:5000`)
@@ -279,17 +266,9 @@ npm run dev
 
 ## How It Works
 
-1. User types a question in the chat UI (e.g., *"top 5 customers by revenue"*)
-2. The frontend sends the question to the **AI engine**
-3. The AI engine:
-   - Checks RBAC permissions based on user role
-   - Retrieves relevant database schema chunks from **ChromaDB** (vector similarity search)
-   - Builds a prompt with schema context + few-shot examples
-   - Sends the prompt to the **local LLM** (via LM Studio)
-   - Validates the generated SQL (no dangerous commands)
-   - Executes the SQL against **NORTHWIND_DB**
-   - Logs everything to **TextToSQL_App.query_logs**
-4. Results are returned to the frontend and displayed
+1. **User asks a question** in the frontend chat UI.
+2. **AI Engine processes the query** by validating RBAC permissions, fetching relevant schema context from ChromaDB, and sending a tailored prompt to the local LLM.
+3. **Execution & Results**: The validated SQL is executed against the database, the action is logged, and results are returned to the user.
 
 ---
 
@@ -308,20 +287,6 @@ npm run dev
 The `ai_engine/vector_store/chroma_schema_db/` directory contains **pre-built embeddings** of the Northwind database schema. These are committed to the repo so you don't need to rebuild them.
 
 The embeddings were generated using the `all-MiniLM-L6-v2` sentence-transformers model.
-
----
-
-## Tech Stack
-
-| Layer | Technology |
-|-------|-----------|
-| AI Pipeline | Python, FastAPI, ChromaDB, sentence-transformers |
-| LLM | qwen2.5-coder-7b-instruct (via LM Studio) |
-| Auth Backend | Python, FastAPI, JWT (python-jose), bcrypt |
-| Frontend | Next.js, TypeScript |
-| Admin Panel | Next.js, TypeScript |
-| Databases | Microsoft SQL Server, ChromaDB |
-| SQL Driver | pyodbc (Windows Auth) |
 
 ---
 
