@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   const { onOpen } = useDisclosure();
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body id="root">
         <AppWrappers>
           <LogoutSync />
