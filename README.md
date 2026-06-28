@@ -9,7 +9,9 @@
 
 ## Video Demo
 
-<video src="https://github.com/yessine-akrout/AskDB/raw/main/demo.mp4" controls="controls" width="100%"></video>
+https://github.com/yessine-akrout/AskDB/raw/main/demo.mp4
+
+*(Note: If the video does not load above, [click here to view it](https://github.com/yessine-akrout/AskDB/blob/main/demo.mp4))*
 
 ---
 
@@ -70,6 +72,7 @@
 - 📊 **Query logging** — every question and generated SQL is tracked
 - 👤 **User authentication** — JWT-based login/register
 - 🖥️ **Admin panel** — manage users, view audit logs and query history
+- 📱 **Fully Responsive UI** — works flawlessly on mobile, tablet, and desktop
 - ⚡ **ChromaDB** — pre-built schema embeddings for fast schema retrieval
 
 ---
@@ -118,6 +121,23 @@ The application requires two SQL Server databases (setup instructions are in Ste
 1. Download [LM Studio](https://lmstudio.ai/)
 2. Download the model: `qwen2.5-coder-7b-instruct`
 3. Start the **Local Server** in LM Studio
+
+---
+
+## Customizing for Your Own Database
+
+If you decide to use AskDB with a different database instead of Northwind, you will need to customize the following files to match your new schema:
+
+1. **RBAC Rules**: `ai_engine/src/security/rbac.py`
+   - Update the table names and user roles to match your business requirements.
+2. **Prompts & Few-Shot Examples**: `ai_engine/src/prompt/rag_prompt_builder.py`
+   - Customize the instructions and provide new few-shot SQL examples relevant to your new database.
+3. **Table Keywords**: `ai_engine/src/RAG/northwind_table_keywords.py`
+   - Create a new file (e.g., `yourdb_table_keywords.py`) mapping your tables to relevant search keywords. Update the imports to use this new file.
+4. **Semantic Knowledge Base**: `ai_engine/src/RAG/semantic_kb.py`
+   - Define custom terminology, domain-specific slang, and mapping rules for your specific data.
+5. **Rebuild ChromaDB**: `ai_engine/src/RAG/chroma_solution/`
+   - You must re-run your schema extraction and embedding scripts to generate a new Vector DB based on your new database.
 
 ---
 
