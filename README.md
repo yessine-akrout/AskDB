@@ -9,9 +9,9 @@
 
 ## Video Demo
 
-https://github.com/yessine-akrout/AskDB/raw/main/demo.mp4
-
-*(Note: If the video does not load above, [click here to view it](https://github.com/yessine-akrout/AskDB/blob/main/demo.mp4))*
+<video src="./demo.mp4" controls="controls" width="100%">
+  Your browser does not support the video tag.
+</video>
 
 ---
 
