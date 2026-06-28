@@ -51,7 +51,7 @@ Experience AskDB in two different ways:
              ▼                                  ▼
 ┌────────────────────────┐        ┌──────────────────────────────┐
 │   AI Engine            │        │   Backend                    │
-│   FastAPI :8000        │        │   FastAPI :5001              │
+│   FastAPI :5000        │        │   FastAPI :5001              │
 │                        │        │                              │
 │  ┌──────────────────┐  │        │  - Auth (JWT)                │
 │  │  RAG Pipeline    │  │        │  - User management           │
@@ -164,7 +164,7 @@ If you decide to use AskDB with a different database instead of Northwind, you w
 
 ```
 AskDB/
-├── ai_engine/          # RAG + LLM pipeline (FastAPI :8000)
+├── ai_engine/          # RAG + LLM pipeline (FastAPI :5000)
 ├── backend/            # Auth & admin API (FastAPI :5001)
 ├── frontend/           # User chat UI (Next.js :3000)
 ├── admin-panel/        # Admin dashboard UI (Next.js :3001)
