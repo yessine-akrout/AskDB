@@ -166,7 +166,7 @@ copy .env.example .env
 # Edit .env with your SQL Server name
 
 # Start the server
-uvicorn myapi:app --host 127.0.0.1 --port 8000 --reload
+uvicorn myapi:app --host 127.0.0.1 --port 5000 --reload
 ```
 
 > ⚠️ **Make sure LM Studio is running before starting the AI engine!**
@@ -268,7 +268,7 @@ npm run dev
    - Sends the prompt to the **local LLM** (via LM Studio)
    - Validates the generated SQL (no dangerous commands)
    - Executes the SQL against **NORTHWIND_DB**
-   - Logs everything to **TextToSQL_App.query_logs**
+   - Logs everything to **NORTHWIND_DB.query_logs**
 4. Results are returned to the frontend and displayed
 
 ---

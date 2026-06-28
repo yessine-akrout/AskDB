@@ -35,7 +35,7 @@ RBAC Check 2        (validate_sql_table_access) — check table permissions
 SQL Execution       (executor.py → NORTHWIND_DB)
    │
    ▼
-Query Log           (query_logs_repository.py → TextToSQL_App.query_logs)
+Query Log           (query_logs_repository.py → NORTHWIND_DB.query_logs)
    │
    ▼
 Response JSON
@@ -53,7 +53,7 @@ copy .env.example .env
 # Edit .env with your SQL Server name
 
 # Start LM Studio on port 1234 first, then:
-uvicorn myapi:app --host 127.0.0.1 --port 8000 --reload
+uvicorn myapi:app --host 127.0.0.1 --port 5000 --reload
 ```
 
 ## Dependencies
@@ -75,7 +75,7 @@ See `requirements.txt`. Additional packages needed:
 | `src/LLM/client.py` | LM Studio API client |
 | `src/security/rbac.py` | Role-based access control |
 | `src/sql/executor.py` | SQL execution against NORTHWIND_DB |
-| `src/sql/query_logs_repository.py` | Log writes to TextToSQL_App |
+| `src/sql/query_logs_repository.py` | Log writes to NORTHWIND_DB |
 | `vector_store/chroma_schema_db/` | Pre-built Northwind schema embeddings |
 
 ## API
