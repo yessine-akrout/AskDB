@@ -59,7 +59,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                   p={{ base: "16px", md: "20px" }}
                   pe={{ base: "16px", md: "20px" }}
                   minH="100vh"
-                  pt={{ base: "20px", md: "24px" }}
+                  pt={{ base: "100px", md: "80px" }}
                 >
                   {children}
                 </Box>

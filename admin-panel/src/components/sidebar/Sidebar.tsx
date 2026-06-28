@@ -6,6 +6,9 @@ import {
   Flex,
   Drawer,
   DrawerBody,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
   Icon,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -63,23 +66,31 @@ export function SidebarResponsive(props: SidebarResponsiveProps) {
         />
       </Flex>
 
-      <Drawer.Root open={isOpen} onOpenChange={(e) => !e.open && onClose()}>
-        <Drawer.Backdrop />
-        <Drawer.Positioner>
-          <Drawer.Content
-            maxW="285px"
-            bg="white"
-            ms={{ sm: "12px" }}
-            my={{ sm: "12px" }}
-            borderRadius="18px"
-            overflow="hidden"
-          >
-            <Drawer.Body maxW="285px" px="0rem" pb="0">
-              <Content routes={routes} />
-            </Drawer.Body>
-          </Drawer.Content>
-        </Drawer.Positioner>
-      </Drawer.Root>
+      <Drawer
+        isOpen={isOpen}
+        onClose={onClose}
+        placement="left"
+      >
+        <DrawerOverlay />
+        <DrawerContent
+          w="285px"
+          maxW="285px"
+          ms={{ sm: "16px" }}
+          my={{ sm: "16px" }}
+          borderRadius="16px"
+          bg="white"
+        >
+          <DrawerCloseButton
+            zIndex="3"
+            onClick={onClose}
+            _focus={{ boxShadow: "none" }}
+            _hover={{ boxShadow: "none" }}
+          />
+          <DrawerBody maxW="285px" px="0rem" pb="0">
+            <Content routes={routes} />
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
     </Flex>
   );
 }
