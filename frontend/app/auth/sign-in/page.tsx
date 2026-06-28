@@ -107,6 +107,7 @@ export default function SignInPage() {
         position="relative"
       >
         <Flex
+          display={{ base: 'none', lg: 'flex' }}
           w={{ base: '100%', lg: '36%' }}
           bg={purpleGradient}
           color="white"
@@ -230,6 +231,54 @@ export default function SignInPage() {
           py={{ base: '24px', md: '28px', xl: '36px' }}
         >
           <Box w="100%" maxW="500px">
+            <Flex
+              display={{ base: 'flex', lg: 'none' }}
+              align="center"
+              gap="9px"
+              mb="32px"
+            >
+              <Text
+                color={textColor}
+                fontSize="32px"
+                fontWeight="800"
+                lineHeight="1"
+                letterSpacing="-1px"
+              >
+                ASK
+              </Text>
+
+              <Box
+                position="relative"
+                px="8px"
+                py="4px"
+                borderRadius="999px"
+                bg={purpleGradient}
+                color="white"
+                fontSize="12px"
+                fontWeight="900"
+                lineHeight="1"
+                letterSpacing="0.7px"
+                border="1px solid rgba(255,255,255,0.45)"
+                boxShadow="inset 0 1px 0 rgba(255,255,255,0.45), 0 8px 18px rgba(67,24,255,0.28)"
+                overflow="hidden"
+              >
+                <Box
+                  position="absolute"
+                  top="-40%"
+                  left="-20%"
+                  w="70%"
+                  h="120%"
+                  bg="linear-gradient(120deg, rgba(255,255,255,0.55), rgba(255,255,255,0))"
+                  transform="rotate(18deg)"
+                  opacity="0.55"
+                />
+
+                <Box as="span" position="relative" zIndex={1}>
+                  DB
+                </Box>
+              </Box>
+            </Flex>
+
             <Text
               fontSize="sm"
               fontWeight="700"
