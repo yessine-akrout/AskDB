@@ -17,7 +17,7 @@ dicta={
 
 missing=[key for key,value in dicta.items() if not value ]
 if missing:
-    raise ValueError(f"verifier les données de {','.join(missing)}")
+    raise ValueError(f"Missing environment variables: {','.join(missing)}")
 
 
 

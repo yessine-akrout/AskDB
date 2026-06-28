@@ -68,7 +68,7 @@ def questionnaire(payload: Question):
 
         raise HTTPException(
             status_code=403,
-            detail="Rôle utilisateur non autorisé."
+            detail="Unauthorized user role."
         )
 
     if any(word in normalized_question.lower() for word in dangerous_words):

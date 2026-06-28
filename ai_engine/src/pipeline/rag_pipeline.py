@@ -61,10 +61,10 @@ def run_text_to_sql(question: str, user_role: str = "stagiaire"):
 
             return {
                 "question": question,
-                "sql": "Vous n'avez pas l'autorisation d'accéder à ces données.",
+                "sql": "You do not have permission to access this data.",
                 "result": None,
                 "status": "access_denied",
-                "message": "Vous n'avez pas l'autorisation d'accéder à ces données."
+                "message": "You do not have permission to access this data."
             }
 
         rbac_time = time.perf_counter() - rbac_start
