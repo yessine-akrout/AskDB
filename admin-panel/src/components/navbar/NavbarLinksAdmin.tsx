@@ -4,6 +4,8 @@ import { Box, Flex, Icon, Image, Text } from "@chakra-ui/react";
 import { MdInfoOutline, MdDarkMode, MdLightMode } from "react-icons/md";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { API_BASE_URL } from "@/lib/api";
+import { SidebarResponsive } from "@/components/sidebar/Sidebar";
+import routes from "@/routes";
 
 type AuthUser = {
   id: string;
@@ -205,6 +207,7 @@ export default function NavbarLinksAdmin() {
       position="relative"
       minH="50px"
     >
+      <SidebarResponsive routes={routes} />
       <Box position="relative">
         <Icon
           as={MdInfoOutline}
