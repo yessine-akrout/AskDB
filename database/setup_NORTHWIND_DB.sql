@@ -2,7 +2,7 @@
 -- setup_NORTHWIND_DB.sql
 --
 -- This script creates the NORTHWIND_DB database, inserts all
--- Northwind sample data, and adds the query_logs table required
+-- Northwind sample data
 -- by the AskDB application.
 -- ============================================================
 
@@ -9371,31 +9371,4 @@ ALTER TABLE EmployeeTerritories
 GO
 
 
-GO
--- ============================================================
--- query_logs table
---    Written by the AI engine (ai_engine/src/sql/query_logs_repository.py)
--- ============================================================
-IF OBJECT_ID('dbo.query_logs', 'U') IS NULL
-BEGIN
-    CREATE TABLE dbo.query_logs (
-        id              UNIQUEIDENTIFIER DEFAULT NEWID() PRIMARY KEY,
-        user_email      NVARCHAR(255)    NULL,
-        question        NVARCHAR(MAX)    NOT NULL,
-        generated_sql   NVARCHAR(MAX)    NULL,
-        status          NVARCHAR(50)     NOT NULL,
-        error_message   NVARCHAR(MAX)    NULL,
-        row_count       INT              NULL,
-        result_json     NVARCHAR(MAX)    NULL,
-        created_at      DATETIME2        NOT NULL DEFAULT GETDATE()
-    );
-    PRINT 'Table query_logs created in NORTHWIND_DB.';
-
-    CREATE INDEX IX_query_logs_created_at ON dbo.query_logs(created_at);
-    CREATE INDEX IX_query_logs_user_email ON dbo.query_logs(user_email);
-END
-ELSE
-BEGIN
-    PRINT 'Table query_logs already exists in NORTHWIND_DB. Skipping.';
-END
 GO

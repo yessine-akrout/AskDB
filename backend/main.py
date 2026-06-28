@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from auth.router import router as auth_router
 from admin.router import router as admin_router
+from internal.router import router as internal_router
 
 app = FastAPI(title="Chat UI Backend")
 
@@ -19,6 +20,7 @@ app.add_middleware(
 
 app.include_router(auth_router, prefix="/auth", tags=["auth"])
 app.include_router(admin_router, prefix="/admin", tags=["admin"])
+app.include_router(internal_router, prefix="/internal", tags=["internal"])
 
 
 @app.get("/")

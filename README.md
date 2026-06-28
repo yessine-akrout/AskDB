@@ -268,7 +268,7 @@ npm run dev
    - Sends the prompt to the **local LLM** (via LM Studio)
    - Validates the generated SQL (no dangerous commands)
    - Executes the SQL against **NORTHWIND_DB**
-   - Logs everything to **NORTHWIND_DB.query_logs**
+   - Logs everything to **TextToSQL_App.query_logs**
 4. Results are returned to the frontend and displayed
 
 ---

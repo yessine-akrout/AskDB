@@ -7,7 +7,7 @@
      - users        : registered users (email, hashed password, role)
      - admin_logs   : audit log for admin actions (login, register, delete)
    
-   The AI engine writes query logs to the NORTHWIND_DB database, NOT this one.
+   The AI engine writes query logs to the backend which stores them in this database.
    
    Prerequisites:
      - SQL Server (Express or full) running on your machine
@@ -112,6 +112,34 @@ BEGIN
     PRINT 'Default admin user created: admin@askdb.local / Admin@123';
 END
 */
+
+-- ============================================================
+-- 7. query_logs table
+--    Stores all generated SQL queries and their execution results
+-- ============================================================
+IF OBJECT_ID('dbo.query_logs', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.query_logs (
+        id              UNIQUEIDENTIFIER DEFAULT NEWID() PRIMARY KEY,
+        user_email      NVARCHAR(255)    NULL,
+        question        NVARCHAR(MAX)    NOT NULL,
+        generated_sql   NVARCHAR(MAX)    NULL,
+        status          NVARCHAR(50)     NOT NULL,
+        error_message   NVARCHAR(MAX)    NULL,
+        row_count       INT              NULL,
+        result_json     NVARCHAR(MAX)    NULL,
+        created_at      DATETIME2        NOT NULL DEFAULT GETDATE()
+    );
+    PRINT 'Table query_logs created.';
+
+    CREATE INDEX IX_query_logs_created_at ON dbo.query_logs(created_at);
+    CREATE INDEX IX_query_logs_user_email ON dbo.query_logs(user_email);
+END
+ELSE
+BEGIN
+    PRINT 'Table query_logs already exists. Skipping.';
+END
+GO
 
 PRINT '=== TextToSQL_App setup complete ===';
 GO

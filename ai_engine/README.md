@@ -35,7 +35,7 @@ RBAC Check 2        (validate_sql_table_access) — check table permissions
 SQL Execution       (executor.py → NORTHWIND_DB)
    │
    ▼
-Query Log           (query_logs_repository.py → NORTHWIND_DB.query_logs)
+Query Log           (query_logs_repository.py → TextToSQL_App.query_logs)
    │
    ▼
 Response JSON
@@ -75,7 +75,7 @@ See `requirements.txt`. Additional packages needed:
 | `src/LLM/client.py` | LM Studio API client |
 | `src/security/rbac.py` | Role-based access control |
 | `src/sql/executor.py` | SQL execution against NORTHWIND_DB |
-| `src/sql/query_logs_repository.py` | Log writes to NORTHWIND_DB |
+| `src/sql/query_logs_repository.py` | Log writes to TextToSQL_App |
 | `vector_store/chroma_schema_db/` | Pre-built Northwind schema embeddings |
 
 ## API

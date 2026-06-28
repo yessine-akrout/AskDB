@@ -37,7 +37,7 @@ Run [`../database/setup_TextToSQL_App.sql`](../database/setup_TextToSQL_App.sql)
 | `GET` | `/admin/users` | Admin JWT | List all users |
 | `DELETE` | `/admin/users/{id}` | Admin JWT | Delete a user |
 | `GET` | `/admin/logs` | Admin JWT | View admin audit logs |
-| `GET` | `/admin/query-logs` | Admin JWT | View AI query logs (proxied from :8000) |
+| `GET` | `/admin/query-logs` | Admin JWT | View AI query logs (proxied from :5000) |
 
 ## User Roles
 

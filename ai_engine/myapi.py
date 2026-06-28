@@ -21,7 +21,7 @@ from pydantic import BaseModel
 import json
 
 from src.pipeline.rag_pipeline import run_text_to_sql
-from src.sql.query_logs_repository import create_query_log, list_query_logs
+from src.sql.query_logs_repository import create_query_log
 
 app = FastAPI()
 
@@ -147,11 +147,4 @@ def questionnaire(payload: Question):
         raise HTTPException(
             status_code=500,
             detail=str(e)
-        )
-
-
-@app.get("/query-logs")
-def get_query_logs():
-    return {
-        "logs": list_query_logs(limit=200)
-    }
+        )
