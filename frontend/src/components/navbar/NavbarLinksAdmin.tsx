@@ -22,6 +22,20 @@ import routes from '@/routes';
 import { useAuthContext } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 
+export function normalizeAvatarUrl(url?: string | null) {
+  if (!url) return "";
+  let value = url.trim();
+  if (!value) return "";
+  if (value.startsWith("http://") || value.startsWith("https://")) return value;
+  value = value.replace(/\\/g, "/");
+  if (value.startsWith("/")) return value;
+  const fileName = value.split("/").pop() || "";
+  if (fileName && /\.(png|jpg|jpeg|webp|gif|svg)$/i.test(fileName)) {
+    return `/img/users/${fileName}`;
+  }
+  return "";
+}
+
 export default function HeaderLinks(props: { secondary: boolean }) {
   const { secondary } = props;
   const { colorMode, toggleColorMode } = useColorMode();
@@ -148,7 +162,7 @@ export default function HeaderLinks(props: { secondary: boolean }) {
         >
           <Avatar
             name={displayName}
-            src={user?.avatar_url || ''}
+            src={normalizeAvatarUrl(user?.avatar_url)}
             size="sm"
             bg="#11047A"
             color="white"
@@ -168,7 +182,7 @@ export default function HeaderLinks(props: { secondary: boolean }) {
           <Flex w="100%" mb="0px" align="center" gap="10px" px="16px" py="14px">
             <Avatar
               name={displayName}
-              src={user?.avatar_url || ''}
+              src={normalizeAvatarUrl(user?.avatar_url)}
               size="sm"
               bg="#11047A"
               color="white"

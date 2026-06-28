@@ -24,6 +24,20 @@ interface SidebarContentProps extends PropsWithChildren {
   [x: string]: any;
 }
 
+export function normalizeAvatarUrl(url?: string | null) {
+  if (!url) return "";
+  let value = url.trim();
+  if (!value) return "";
+  if (value.startsWith("http://") || value.startsWith("https://")) return value;
+  value = value.replace(/\\/g, "/");
+  if (value.startsWith("/")) return value;
+  const fileName = value.split("/").pop() || "";
+  if (fileName && /\.(png|jpg|jpeg|webp|gif|svg)$/i.test(fileName)) {
+    return `/img/users/${fileName}`;
+  }
+  return "";
+}
+
 function SidebarContent(props: SidebarContentProps) {
   const router = useRouter();
 
@@ -271,7 +285,7 @@ function SidebarContent(props: SidebarContentProps) {
           <Avatar
             size="sm"
             name={displayName}
-            src={user?.avatar_url || undefined}
+            src={normalizeAvatarUrl(user?.avatar_url) || undefined}
             me="10px"
           />
 
