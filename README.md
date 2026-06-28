@@ -4,11 +4,30 @@
 
 ---
 
+## Table of Contents
+
+- [🚀 See It In Action](#-see-it-in-action)
+- [Architecture](#architecture)
+- [Features](#features)
+- [Test Accounts](#test-accounts)
+- [Sample Questions to Try](#sample-questions-to-try)
+- [Tech Stack & Prerequisites](#tech-stack--prerequisites)
+- [Customizing for Your Own Database](#customizing-for-your-own-database)
+- [Project Structure](#project-structure)
+- [Setup & Running](#setup--running)
+- [Key API Endpoints](#key-api-endpoints)
+- [How It Works](#how-it-works)
+- [RBAC Roles](#rbac-roles)
+- [ChromaDB Vector Store](#chromadb-vector-store)
+- [License](#license)
+
+---
+
 ## 🚀 See It In Action
 
 Experience AskDB in two different ways:
 
-- **[🌐 Try the Interactive Live Demo](http://bit.ly/4ezbt6b)** — Test the web app yourself directly in your browser.
+- **[🌐 Try the Interactive Live Demo](https://ask-db2.vercel.app/auth/sign-in)** — Test the web app yourself directly in your browser.
 - **[🎬 Watch the Video Walkthrough](https://drive.google.com/file/d/1aEAhfrb-sVd5sPC6992h-of1GpisidWG/view?usp=sharing)** — A full recorded tour of the UI, RBAC features, and querying capabilities.
 
 > **Database used in these demos:** Microsoft Northwind (sample trading company database)
@@ -73,6 +92,7 @@ Experience AskDB in two different ways:
 - 👤 **User authentication** — JWT-based login/register
 - 🖥️ **Admin panel** — manage users, view audit logs and query history
 - 📱 **Fully Responsive UI** — works flawlessly on mobile, tablet, and desktop
+- ⚡ **ChromaDB Vector DB** — pre-built schema embeddings for blazing fast semantic retrieval
 
 ---
 
