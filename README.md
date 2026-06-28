@@ -9,7 +9,7 @@
 
 ## Video Demo
 
-*(Video demo coming soon - will be added here)*
+<video src="https://github.com/yessine-akrout/AskDB/raw/main/demo.mp4" controls="controls" width="100%"></video>
 
 ---
 
