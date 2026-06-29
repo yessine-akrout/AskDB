@@ -270,7 +270,6 @@ npm run dev
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | `POST` | `/chat` | Submit a natural language question → get SQL + results |
-| `GET` | `/query-logs` | List all query execution logs |
 
 ### Backend (`localhost:5001`)
 | Method | Endpoint | Description |
@@ -280,7 +279,7 @@ npm run dev
 | `GET` | `/admin/users` | List all users (admin only) |
 | `DELETE` | `/admin/users/{id}` | Delete a user (admin only) |
 | `GET` | `/admin/logs` | View admin audit logs |
-| `GET` | `/admin/query-logs` | View AI query logs (proxied) |
+| `GET` | `/admin/query-logs` | View AI query logs (fetched from DB) |
 
 ---
 

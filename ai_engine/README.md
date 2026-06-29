@@ -68,7 +68,7 @@ See `requirements.txt`. Additional packages needed:
 
 | File | Purpose |
 |------|---------|
-| `myapi.py` | FastAPI entry point, `/chat` and `/query-logs` endpoints |
+| `myapi.py` | FastAPI entry point, `/chat` endpoint |
 | `src/pipeline/rag_pipeline.py` | Main orchestrator |
 | `src/RAG/chroma_solution/chroma_retreiever_northwind.py` | ChromaDB schema retrieval |
 | `src/prompt/rag_prompt_builder.py` | Prompt construction |
@@ -103,5 +103,3 @@ Returns:
 }
 ```
 
-### `GET /query-logs`
-Returns the last 200 query logs.
